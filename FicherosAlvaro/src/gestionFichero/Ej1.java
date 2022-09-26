@@ -1,4 +1,4 @@
-package gestionFichero.Ej1;
+package gestionFichero;
 
 import java.io.File;
 import java.io.IOException;
