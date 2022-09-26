@@ -1,4 +1,4 @@
-package Ej1;
+package secuencial.ejercicios.Ej1;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
