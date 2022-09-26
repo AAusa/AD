@@ -1,0 +1,6 @@
+Jose María,Terrer Navarro,1.87,02/05/1998,654783433
+Pilar,Bayona Pérez,1.60,20/02/1972,976585669
+Ángel,Piqueras Rodriguez,1.90,25/09/2001,689887744
+Pedro,Duque Contreras,1.81,26/11/1985,652369633
+Maria Pilar,García García,1.85,30/11/2001,621350120
+Josefa,Bueno Vallés,1.73,29/08/1974,976412141

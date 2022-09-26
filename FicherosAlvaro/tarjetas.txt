@@ -1,0 +1,30 @@
+Jose María
+	Apellidos: Terrer Navarro
+	Fecha de nacimiento: 02/05/1998
+	Teléfono: 65478343
+
+3Pilar
+	Apellidos: Bayona Pérez
+	Fecha de nacimiento: 20/02/1972
+	Teléfono: 97658566
+
+9Ángel
+	Apellidos: Piqueras Rodriguez
+	Fecha de nacimiento: 25/09/2001
+	Teléfono: 68988774
+
+4Pedro
+	Apellidos: Duque Contreras
+	Fecha de nacimiento: 26/11/1985
+	Teléfono: 65236963
+
+3Maria Pilar
+	Apellidos: García García
+	Fecha de nacimiento: 30/11/2001
+	Teléfono: 62135012
+
+0Josefa
+	Apellidos: Bueno Vallés
+	Fecha de nacimiento: 29/08/1974
+	Teléfono: 97641214
+
