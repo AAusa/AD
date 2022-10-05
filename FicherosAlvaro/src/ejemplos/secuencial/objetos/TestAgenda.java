@@ -1,4 +1,4 @@
-package secuencial.objetos.ejemploModificado;
+package ejemplos.secuencial.objetos;
 
 import java.io.*;
 import java.util.Scanner;
@@ -35,9 +35,9 @@ public class TestAgenda {
 		}
 
 
-		//Ahora lo leemos
+		//TAMBIÉN 
 		try (FileInputStream fis = new FileInputStream(nombreFichero);
-			ObjectInputStream ois = new ObjectInputStream(fis)) {
+				ObjectInputStream ois = new ObjectInputStream(fis)) {
 			a = (Agenda) ois.readObject();
 			// Mientras haya objetos
 			while (a != null) {					

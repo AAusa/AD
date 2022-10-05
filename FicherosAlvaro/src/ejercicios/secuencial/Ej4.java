@@ -1,4 +1,4 @@
-package gestionFichero.Ej4;
+package ejercicios.secuencial;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;

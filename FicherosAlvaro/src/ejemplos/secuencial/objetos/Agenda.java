@@ -1,4 +1,4 @@
-package secuencial.objetos.ejemploModificado;
+package ejemplos.secuencial.objetos;
 
 import java.io.Serializable;
 

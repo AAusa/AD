@@ -1,4 +1,4 @@
-package gestionFichero;
+package ejercicios.gestionFichero;
 
 import java.io.File;
 import java.io.IOException;
