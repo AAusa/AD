@@ -122,16 +122,18 @@ public class GestionaAgenda {
 			System.out.println(persona);
 		}
 	}
+	
 
 	/*
 	 * En proceso... De uno en uno
-	 */
+	 
 	public void leerTodo () {
 		Persona registro = null;
 		int pos = 1;
 		for(int i = fichero.seek(pos); i < fichero.length(); i = fichero.seek(pos++)) {
 			
 		}
+	
 		if (fichero != null) {
 			try {
 				registro = new Persona();
@@ -161,6 +163,7 @@ public class GestionaAgenda {
 
 		return registro;
 	}
+	*/
 
 
 	/**
