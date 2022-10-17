@@ -2,11 +2,12 @@ package ejemplos.aleatorio.encapsulado;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Principal {
 
 	public static void main(String[] args) {
-			
+		ArrayList<Persona> personas = new ArrayList<Persona>();
 		GestionaAgenda agenda = new GestionaAgenda("src\\ejemplos\\aleatorio\\encapsulado\\AgendaPersonas.dat");
 		
 				
@@ -45,9 +46,11 @@ public class Principal {
 		try {
 			
 			System.out.println(agenda.leer(3));
-			System.out.println("Todo:");
-			agenda.leerTodoArray();
-			
+			System.out.println("leerTodoArray:");
+			personas = agenda.leerTodoArray();
+			for (Persona persona : personas) {
+				System.out.println(persona);
+			}
 		} catch (Exception e) {
 			// TODO: handle exception
 		}

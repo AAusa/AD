@@ -74,7 +74,6 @@ public class GestionaAgenda {
 	 */
 	public void escribir (Persona registro) throws IOException {
 		if (fichero != null) {
-			personas.add(registro);
 			// nombre de una persona ocupa 10 characteres --> 10 *2 = 20 bytes para almacenar el nombre 
 			// 4 bytes para almacenar el entero de edad
 			// el email del due�o de la persona ocupa 50 caracteres --> 30*2 = 60 bytes para almacenar el email 
@@ -117,54 +116,6 @@ public class GestionaAgenda {
 		return this.leer();
 	}
 
-	public void leerTodoArray () {
-		for (Persona persona : personas) {
-			System.out.println(persona);
-		}
-	}
-	
-
-	/*
-	 * En proceso... De uno en uno
-	 
-	public void leerTodo () {
-		Persona registro = null;
-		int pos = 1;
-		for(int i = fichero.seek(pos); i < fichero.length(); i = fichero.seek(pos++)) {
-			
-		}
-	
-		if (fichero != null) {
-			try {
-				registro = new Persona();
-
-				// TENGO QUE IR LEYENDO EN ORDEN LO QUE HE ESCRITO ANTES
-				// leo el NOMBRE
-				char campoN[] = new char[dimensionNombre];
-				for (int i = 0; i < dimensionNombre; i++) {
-					campoN[i] = fichero.readChar();
-				}	
-				registro.setNombre(new String(campoN));
-
-				registro.setEdad(fichero.readInt());		
-
-				// leo el EMAIL
-				char campoE[] = new char[dimensionEmail];
-				for (int i = 0; i < dimensionEmail; i++) {
-					campoE[i] = fichero.readChar();
-				}			
-				registro.setEmail(new String(campoE));
-
-			} catch (Exception e) {
-				// entrar� aqu� cuando haya llegado al final del fichero
-				registro = null;
-			}
-		}
-
-		return registro;
-	}
-	*/
-
 
 	/**
 	 * Leer del fichero la persona que se encuentra en la posici�n actual del cursor
@@ -203,6 +154,23 @@ public class GestionaAgenda {
 		}
 
 		return registro;
+	}
+
+	/*
+	 * Mejor leer todo del fichero y volcarlo al array q guardar a la vez en ambos.
+	 */
+	public ArrayList<Persona> leerTodoArray () throws IOException {
+		Persona registro = new Persona();
+		int pos = 1;
+		iniciar();
+		while(fichero.getFilePointer() < fichero.length()) {
+			//System.out.println("posicion: " + pos);
+			//System.out.println("posicionActual: " + fichero.getFilePointer());
+			registro = leer(pos);
+			personas.add(registro);
+			pos++;
+		}
+		return personas;
 	}
 
 	/**

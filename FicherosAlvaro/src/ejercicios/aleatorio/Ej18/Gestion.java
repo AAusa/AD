@@ -44,6 +44,7 @@ public class Gestion {
 	}
 
 	public void escribir (Departamento registro) throws IOException {
+		fichero.seek(calculaposicion(registro.num));
 		if (fichero != null) {
 			fichero.writeInt(registro.getNum());
 
@@ -64,6 +65,23 @@ public class Gestion {
 		}
 
 	}
+	
+	/*
+	 * Por qué no introduce en el nuevo los espacios hasta que termina el registro
+	 */
+	public void modificar (Departamento registroNew) throws IOException {
+		Departamento antiguo = new Departamento();
+		antiguo = leer(registroNew.num);
+		System.out.println("Antes:\n" + antiguo);
+		if(antiguo != null) {
+			escribir(registroNew);
+			System.out.println("Ahora:\n" + registroNew);
+		}
+		else {
+			System.out.println("El registro esta vacio");
+		}
+	}
+
 
 	public Departamento leer (int pos) throws IOException {
 
@@ -105,6 +123,8 @@ public class Gestion {
 
 		return registro;
 	}
+	
+
 	
 	public void iniciar() throws IOException  {			
 		fichero.seek(0);	
