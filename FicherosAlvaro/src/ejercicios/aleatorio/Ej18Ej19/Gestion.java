@@ -1,4 +1,4 @@
-package ejercicios.aleatorio.Ej18;
+package ejercicios.aleatorio.Ej18Ej19;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -8,6 +8,7 @@ public class Gestion {
 	private int dimensionNombre = 10;
 	private int dimensionLocalidad = 20;
 	/*
+	 * Calculo TAMAGNOREGISTRO:
 	 * Nombre: 10*2 = 20
 	 * Localidad: 20*2 = 40
 	 * Num: 4
@@ -67,19 +68,30 @@ public class Gestion {
 	}
 	
 	/*
-	 * Por qué no introduce en el nuevo los espacios hasta que termina el registro
+	 * Metodo encargado de modificar un registro e imprimir el antes y despues del registro
+	 * @param registroNew (Departamento)
 	 */
 	public void modificar (Departamento registroNew) throws IOException {
-		Departamento antiguo = new Departamento();
-		antiguo = leer(registroNew.num);
-		System.out.println("Antes:\n" + antiguo);
-		if(antiguo != null) {
-			escribir(registroNew);
-			System.out.println("Ahora:\n" + registroNew);
+		Departamento dpto = new Departamento();
+		dpto = leer(registroNew.num);
+		System.out.println("Antes:\n" + dpto);
+		escribir(registroNew);
+		dpto = leer(registroNew.num);
+		System.out.println("Ahora:\n" + dpto);	
+	}
+	
+	/*
+	 * Encargado de comprobar si el registro esta vacio o no
+	 * @return boolean
+	 * @param num
+	 */
+	public boolean verEstadoRegistro (int num) throws IOException {
+		Departamento dpto = new Departamento();
+		dpto = leer(num);
+		if(dpto.num == 0) {
+			return false;
 		}
-		else {
-			System.out.println("El registro esta vacio");
-		}
+		return true;
 	}
 
 
@@ -116,7 +128,7 @@ public class Gestion {
 				registro.setLocalidad(new String(campoLocalidad));
 
 			} catch (Exception e) {
-				// entrar� aqu� cuando haya llegado al final del fichero
+				// entrar aqu� cuando haya llegado al final del fichero
 				registro = null;
 			}
 		}

@@ -1,4 +1,4 @@
-package ejercicios.aleatorio.Ej18;
+package ejercicios.aleatorio.Ej18Ej19;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -13,7 +13,7 @@ public class Principal {
 		Gestion agenda = new Gestion("src\\ejercicios\\aleatorio\\Ej18\\departamento.dat");
 		
 				
-		//  guarda las personas en el fichero secuencial
+		// guarda las personas en el fichero secuencial
 		// la primera persona estar� en la posici�n 1, la segunda en la posici�n 2
 		// y asi sucesivamente....
 		try {
@@ -43,12 +43,18 @@ public class Principal {
 		System.out.println("Num. registro a modificar: ");
 		int num = teclado.nextInt();
 		teclado.nextLine();
-		System.out.println("Nombre: ");
-		String nombre = teclado.nextLine();
-		System.out.println("Localidad: ");
-		String localidad = teclado.nextLine();
-		Departamento dpto = new Departamento(num, nombre, localidad);
-		agenda.modificar(dpto);
+		if(agenda.verEstadoRegistro(num)) {
+			System.out.println("Nombre: ");
+			String nombre = teclado.nextLine();
+			System.out.println("Localidad: ");
+			String localidad = teclado.nextLine();
+			Departamento dpto = new Departamento(num, nombre, localidad);
+			agenda.modificar(dpto);
+		}
+		else {
+			System.out.println("Registro vacío");
+		}
+
 		// leer las personas
 		/*
 		try {

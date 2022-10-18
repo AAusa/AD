@@ -1,4 +1,4 @@
-package ejercicios.aleatorio.Ej18;
+package ejercicios.aleatorio.Ej18Ej19;
 
 import java.io.Serializable;
 import java.util.Objects;
