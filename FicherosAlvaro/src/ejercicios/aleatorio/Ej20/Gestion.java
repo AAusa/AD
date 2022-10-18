@@ -1,8 +1,11 @@
-package ejercicios.aleatorio.Ej18Ej19;
+package ejercicios.aleatorio.Ej20;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.util.ArrayList;
+
+import ejemplos.aleatorio.encapsulado.Persona;
 /**
  * Clase que gestiona la lectura y escritura de departamentos
  * @author Álvaro
@@ -43,16 +46,18 @@ public class Gestion {
 
 	public void escribir (Departamento registro, int pos) throws IOException {
 		if (fichero != null) {
+			// posiciono el puntero en el sitio que quiero ...
 			fichero.seek(calculaposicion(pos));
 			this.escribir(registro);
 		}
 	}
 
 	public void escribir (Departamento registro) throws IOException {
-		fichero.seek(calculaposicion(registro.getNum()));
+		fichero.seek(calculaposicion(registro.num));
 		if (fichero != null) {
 			fichero.writeInt(registro.getNum());
 
+			//Guardar en bufferN el nombre y añadirle una longitud
 			StringBuffer bufferNombre= new StringBuffer(); 
 			if (registro.getNombre() != null) {
 				bufferNombre.append(registro.getNombre());
@@ -77,10 +82,10 @@ public class Gestion {
 	 */
 	public void modificar (Departamento registroNew) throws IOException {
 		Departamento dpto = new Departamento();
-		dpto = leer(registroNew.getNum());
+		dpto = leer(registroNew.num);
 		System.out.println("Antes:\n" + dpto);
 		escribir(registroNew);
-		dpto = leer(registroNew.getNum());
+		dpto = leer(registroNew.num);
 		System.out.println("Ahora:\n" + dpto);	
 	}
 	
@@ -95,19 +100,40 @@ public class Gestion {
 		try {
 		dpto = leer(num);
 		
-			if(dpto.getNum() == 0) {
+			if(dpto == null) {
 				return false;
 			}
 		} catch (NullPointerException e) {
-			//Dpto. es null
 			return false;
 		} catch (IOException e2) {
-			System.out.println("Num negativo introducido");
+			System.out.println("Introduce un num. positivo");
 			return false;
 		}
-		
-		
 		return true;
+	}
+	
+
+	public void borrar (int num) throws IOException {
+		Departamento dpto = new Departamento();
+		dpto.setNum(num);
+		escribir(dpto);
+		System.out.println("Borrado");
+	}
+	
+	public int contarDptos () throws IOException {
+		Departamento dpto = new Departamento();
+		int pos = 1, cantidad = 0;
+		iniciar();
+		while(fichero.getFilePointer() < fichero.length()) {
+			//System.out.println("posicion: " + pos);
+			//System.out.println("posicionActual: " + fichero.getFilePointer());
+			dpto = leer(pos);
+			if(dpto != null) {
+				cantidad++;
+			}
+			pos++;
+		}
+		return cantidad;
 	}
 
 
@@ -128,6 +154,7 @@ public class Gestion {
 			try {
 				registro = new Departamento();
 				
+				//Edita las caracteristicas de un Departamento con el contenido del registro del fichero
 				registro.setNum(fichero.readInt());		
 
 				char campoNombre[] = new char[dimensionNombre];
@@ -143,6 +170,7 @@ public class Gestion {
 				registro.setLocalidad(new String(campoLocalidad));
 
 			} catch (Exception e) {
+				// entrar aqu� cuando haya llegado al final del fichero
 				registro = null;
 			}
 		}
