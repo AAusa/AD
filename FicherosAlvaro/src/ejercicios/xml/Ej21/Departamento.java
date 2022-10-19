@@ -1,11 +1,11 @@
-package ejercicios.aleatorio.Ej20;
+package ejercicios.xml.Ej21;
 
 import java.io.Serializable;
 import java.util.Objects;
 
 public class Departamento implements Serializable {
-	int num;
-	String nombre, localidad;
+	private int num;
+	private String nombre, localidad;
 	
 	public Departamento(int num, String nombre, String localidad) {
 		this.num = num;

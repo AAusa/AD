@@ -6,4 +6,5 @@
  *
  */
 module FicherosAlvaro {
+	requires java.xml;
 }
