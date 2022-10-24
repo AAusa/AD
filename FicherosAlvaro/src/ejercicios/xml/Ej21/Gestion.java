@@ -154,6 +154,13 @@ public class Gestion {
 	
 	public void iniciar() throws IOException  {			
 		fichero.seek(0);	
-}
+	}
+	
+	public boolean EOF() throws IOException {
+		if(fichero.getFilePointer() >= fichero.length()) {
+			return true;
+		}
+		return false;
+	}
 
 }

@@ -29,12 +29,10 @@ import org.w3c.dom.Text;
 public class Principal {
 	public static void main(String[] args) throws IOException {
 		Scanner teclado = new Scanner(System.in);
-		Gestion agenda = new Gestion("src\\ejercicios\\aleatorio\\Ej18Ej19\\departamento.dat");
-
+		Gestion agenda = new Gestion("src\\ejercicios\\xml\\Ej21\\departamento.dat");
+		/*
 		try {
-			agenda.abrir();
-			agenda.iniciar();
-
+			
 			Departamento d1 = new Departamento(1, "d1", "Zgz");
 			Departamento d2 = new Departamento(2, "d2", "Bcna");
 			Departamento d3 = new Departamento(3, "d3","Mdrd");
@@ -51,11 +49,14 @@ public class Principal {
 		} catch (IOException e) {
 			System.out.println("Error, de escritura");
 			e.printStackTrace();
-		}
+		}*/
+		
+		agenda.abrir();
+		agenda.iniciar();
 
 		//ESCRIBIR
 		DocumentBuilderFactory factoria = DocumentBuilderFactory.newInstance();
-
+		boolean leerTodo = true;
 		try {
 			DocumentBuilder builder = factoria.newDocumentBuilder();
 			DOMImplementation implementatio = builder.getDOMImplementation();
@@ -63,24 +64,29 @@ public class Principal {
 			document.setXmlVersion("1.0");
 
 			int edad = 21;
-			for (int i=1; i<=4;i++ ) {
+			int i = 1;
+			//Gestion con while, como leer null sin error
+			//for (int i = 1; i <= 10; i++) {
+			while(agenda.EOF()) {
 				Element nodoPadre = document.createElement("Departamento");
 				document.getDocumentElement().appendChild(nodoPadre);
 
 				Element elem = document.createElement("Nombre");
-				Text text = document.createTextNode(agenda.leer(i).getNombre());
-				nodoPadre.appendChild(elem);
+				Text text = document.createTextNode(agenda.leer(i).getNombre().trim());//Quita espacios en blanco
 				elem.appendChild(text);
+				nodoPadre.appendChild(elem);
+				
 
 				elem = document.createElement("Numero");
-				text = document.createTextNode(Integer.toString(agenda.leer(i).getNum()));
+				text = document.createTextNode(Integer.toString(agenda.leer(i).getNum()).trim());
 				nodoPadre.appendChild(elem);
 				elem.appendChild(text);
 
 				elem = document.createElement("Localidad");
-				text = document.createTextNode(agenda.leer(i).getLocalidad());
+				text = document.createTextNode(agenda.leer(i).getLocalidad().trim());
 				nodoPadre.appendChild(elem);
 				elem.appendChild(text);
+				i++;
 
 			}
 
@@ -99,6 +105,13 @@ public class Principal {
 		} catch (TransformerException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}catch (NullPointerException e) {
+			/*
+			Element elem = document.createElement("Nombre");
+			Text text = document.createTextNode("");//Quita espacios en blanco
+			elem.appendChild(text);
+			nodoPadre.appendChild(elem);
+			*/
 		}
 		
 		//LEER
