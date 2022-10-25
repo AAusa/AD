@@ -9,6 +9,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 /**
+ * Clase dedicada a pruebas
  * @author alu
  *
  */
@@ -16,10 +17,14 @@ import java.io.IOException;
 public class Principal {
 
 	/**
+	 * Método que ejecuta lee y escribe a partir del objeto de la clase Conversion
 	 * @param args
 	 */
 	public static void main(String[] args) {
-
+		Conversion c = new Conversion();
+		c.leerTXT();
+		c.escribirXML();
+		
 	}
 
 }

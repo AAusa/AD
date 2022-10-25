@@ -3,6 +3,9 @@ package ejercicios.xml.Ej21;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.util.ArrayList;
+
+import ejemplos.aleatorio.encapsulado.Persona;
 /**
  * Clase que gestiona la lectura y escritura de departamentos
  * @author Álvaro
@@ -21,6 +24,8 @@ public class Gestion {
 	public final static int TAMAGNOREGISTRO = 64;
 	private RandomAccessFile fichero;
 	private String nomFichero;
+	ArrayList<Departamento> departamentos = new ArrayList<Departamento>();
+
 	
 	
 	public Gestion(String nomfichero) {
@@ -156,11 +161,24 @@ public class Gestion {
 		fichero.seek(0);	
 	}
 	
+	public ArrayList<Departamento> leerTodoArray () throws IOException {
+		Departamento departamento = new Departamento();
+		int pos = 1;
+		iniciar();
+		while(fichero.getFilePointer() < fichero.length()) {
+			//System.out.println("posicion: " + pos);
+			//System.out.println("posicionActual: " + fichero.getFilePointer());
+			departamento = leer(pos);
+			departamentos.add(departamento);
+			pos++;
+		}
+		return departamentos;
+	}
+	
 	public boolean EOF() throws IOException {
 		if(fichero.getFilePointer() >= fichero.length()) {
 			return true;
 		}
 		return false;
 	}
-
 }

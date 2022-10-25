@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -30,18 +31,30 @@ public class Principal {
 	public static void main(String[] args) throws IOException {
 		Scanner teclado = new Scanner(System.in);
 		Gestion agenda = new Gestion("src\\ejercicios\\xml\\Ej21\\departamento.dat");
+		ArrayList<Departamento> departamentos = new ArrayList<Departamento>();
+		
 		/*
 		try {
+			agenda.abrir();
+			agenda.iniciar();
 			
 			Departamento d1 = new Departamento(1, "d1", "Zgz");
 			Departamento d2 = new Departamento(2, "d2", "Bcna");
 			Departamento d3 = new Departamento(3, "d3","Mdrd");
 			Departamento d4 = new Departamento(4, "d4", "Zam");
+			Departamento d5 = new Departamento(55, "d5", "Zgz");
+			Departamento d6 = new Departamento(12, "d6", "Bcna");
+			Departamento d7 = new Departamento(65, "d7","Mdrd");
+			Departamento d8 = new Departamento(31, "d8", "Zam");
 
 			agenda.escribir(d1);
 			agenda.escribir(d2);
 			agenda.escribir(d3);
 			agenda.escribir(d4);	
+			agenda.escribir(d5);
+			agenda.escribir(d6);
+			agenda.escribir(d7);
+			agenda.escribir(d8);	
 		} 
 		catch (FileNotFoundException e) {
 			System.out.println("Error, fichero no encontrado");
@@ -49,7 +62,10 @@ public class Principal {
 		} catch (IOException e) {
 			System.out.println("Error, de escritura");
 			e.printStackTrace();
-		}*/
+		}
+		*/
+		
+		
 		
 		agenda.abrir();
 		agenda.iniciar();
@@ -67,7 +83,8 @@ public class Principal {
 			int i = 1;
 			//Gestion con while, como leer null sin error
 			//for (int i = 1; i <= 10; i++) {
-			while(agenda.EOF()) {
+			departamentos = agenda.leerTodoArray();
+			for (Departamento departamento : departamentos) {
 				Element nodoPadre = document.createElement("Departamento");
 				document.getDocumentElement().appendChild(nodoPadre);
 
@@ -87,7 +104,6 @@ public class Principal {
 				nodoPadre.appendChild(elem);
 				elem.appendChild(text);
 				i++;
-
 			}
 
 			TransformerFactory xformFactory = TransformerFactory.newInstance();  
@@ -105,13 +121,6 @@ public class Principal {
 		} catch (TransformerException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}catch (NullPointerException e) {
-			/*
-			Element elem = document.createElement("Nombre");
-			Text text = document.createTextNode("");//Quita espacios en blanco
-			elem.appendChild(text);
-			nodoPadre.appendChild(elem);
-			*/
 		}
 		
 		//LEER
@@ -134,6 +143,6 @@ public class Principal {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
+		
 	}
 }

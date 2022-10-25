@@ -13,10 +13,10 @@ public class Principal {
 			agenda.abrir();
 			agenda.iniciar();
 			
-			Departamento d1 = new Departamento(1, "d1", "Zgz");
-			Departamento d2 = new Departamento(2, "d2", "Bcna");
-			Departamento d3 = new Departamento(3, "d3","Mdrd");
-			Departamento d4 = new Departamento(4, "d4", "Zam");
+			Departamentto d1 = new Departamentto(1, "d1", "Zgz");
+			Departamentto d2 = new Departamentto(2, "d2", "Bcna");
+			Departamentto d3 = new Departamentto(3, "d3","Mdrd");
+			Departamentto d4 = new Departamentto(4, "d4", "Zam");
 			
 			agenda.escribir(d1);
 			agenda.escribir(d2);
@@ -42,6 +42,7 @@ public class Principal {
 		else {
 			System.out.println("Registro vacío o nulo");
 		}	
+		System.out.println("getNumDptos: " + agenda.getNumDptos());
 		
 	}
 }

@@ -3,16 +3,16 @@ package ejercicios.aleatorio.Ej20;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class Departamento implements Serializable {
+public class Departamentto implements Serializable {
 	private int num;
 	private String nombre, localidad;
 	
-	public Departamento(int num, String nombre, String localidad) {
+	public Departamentto(int num, String nombre, String localidad) {
 		this.num = num;
 		this.nombre = nombre;
 		this.localidad = localidad;
 	}
-	public Departamento() {
+	public Departamentto() {
 	}
 	
 	public int getNum() {
@@ -46,7 +46,7 @@ public class Departamento implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Departamento other = (Departamento) obj;
+		Departamentto other = (Departamentto) obj;
 		return num == other.num;
 	}
 	
