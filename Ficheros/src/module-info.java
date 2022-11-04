@@ -1,9 +1,0 @@
-/**
- * 
- */
-/**
- * @author alu
- *
- */
-module Ficheros {
-}
