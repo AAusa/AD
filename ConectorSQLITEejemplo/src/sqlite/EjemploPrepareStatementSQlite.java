@@ -13,7 +13,6 @@ public class EjemploPrepareStatementSQlite {
     	Scanner sc = new Scanner(System.in);
     	int cantidad = 0;
     	EjemploPrepareStatementSQlite ej = new EjemploPrepareStatementSQlite();
-
         try {
         	// CARGAR EL CONTROLADOR JDBC de la base de datos
         	Class.forName("org.sqlite.JDBC");

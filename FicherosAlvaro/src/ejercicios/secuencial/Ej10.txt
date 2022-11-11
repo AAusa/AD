@@ -1,2 +1,0 @@
-EJERCICIO 1
-Escribe un programa Java que inicialice cuatro objetos de tipo File
