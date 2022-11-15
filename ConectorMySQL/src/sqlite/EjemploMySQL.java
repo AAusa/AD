@@ -30,6 +30,7 @@ public class EjemploMySQL {
             // LIBRERAR LOS RECURSOS
             resultado.close();
             sentencia.close();
+            conexion.commit();//PONERLO SI O SI
             conexion.close();
             
         } catch (SQLException | ClassNotFoundException ex) {
