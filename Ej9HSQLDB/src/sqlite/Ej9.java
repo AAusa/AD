@@ -37,7 +37,7 @@ public class Ej9 {
 			int idSocio = sc.nextInt(); sc.nextLine();
 			
 			//Comprobacion de que existe el socio indicado:
-			resultado = sentencia.executeQuery("SELECT * FROM `socio` WHERE Codigo="+idSocio+";");
+			resultado = sentencia.executeQuery("SELECT * FROM Socio WHERE Codigo="+idSocio+";");
             if (resultado.next()) {
             	//Pedida de datos y actualizacion del registro:
             	System.out.println("Introduce el nuevo domicilio: ");
