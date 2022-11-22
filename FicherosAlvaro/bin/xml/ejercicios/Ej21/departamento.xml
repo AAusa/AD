@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Departamentos>
+	<Departamento>
+		<Nombre>d1</Nombre>
+		<Numero>1</Numero>
+		<Localidad>Zgz</Localidad>
+	</Departamento>
+	<Departamento>
+		<Nombre>d2</Nombre>
+		<Numero>2</Numero>
+		<Localidad>Bcna</Localidad>
+	</Departamento>
+	<Departamento>
+		<Nombre>d3</Nombre>
+		<Numero>3</Numero>
+		<Localidad>Mdrd</Localidad>
+	</Departamento>
+	<Departamento>
+		<Nombre>d4</Nombre>
+		<Numero>4</Numero>
+		<Localidad>Zam</Localidad>
+	</Departamento>
+	<Departamento>
+		<Nombre />
+		<Numero>0</Numero>
+		<Localidad />
+	</Departamento>
+	<Departamento>
+		<Nombre />
+		<Numero>0</Numero>
+		<Localidad />
+	</Departamento>
+	<Departamento>
+		<Nombre />
+		<Numero>0</Numero>
+		<Localidad />
+	</Departamento>
+	<Departamento>
+		<Nombre />
+		<Numero>0</Numero>
+		<Localidad />
+	</Departamento>
+	<Departamento>
+		<Nombre />
+		<Numero>0</Numero>
+		<Localidad />
+	</Departamento>
+	<Departamento>
+		<Nombre />
+		<Numero>0</Numero>
+		<Localidad />
+	</Departamento>
+	<Departamento>
+		<Nombre />
+		<Numero>0</Numero>
+		<Localidad />
+	</Departamento>
+	<Departamento>
+		<Nombre>d6</Nombre>
+		<Numero>12</Numero>
+		<Localidad>Bcna</Localidad>
+	</Departamento>
+	<Departamento>
+		<Nombre />
+		<Numero>0</Numero>
+		<Localidad />
+	</Departamento>
+	<Departamento>
+		<Nombre />
+		<Numero>0</Numero>
+		<Localidad />
+	</Departamento>
+	<Departamento>
+		<Nombre />
+		<Numero>0</Numero>
+		<Localidad />
+	</Departamento>
+	<Departamento>
+		<Nombre />
+		<Numero>0</Numero>
+		<Localidad />
+	</Departamento>
+	<Departamento>
+		<Nombre />
+		<Numero>0</Numero>
+		<Localidad />
+	</Departamento>
+	<Departamento>
+		<Nombre />
+		<Numero>0</Numero>
+		<Localidad />
+	</Departamento>
+	<Departamento>
+		<Nombre />
+		<Numero>0</Numero>
+		<Localidad />
+	</Departamento>
+	<Departamento>
+		<Nombre />
+		<Numero>0</Numero>
+		<Localidad />
+	</Departamento>
+	<Departamento>
+		<Nombre />
+		<Numero>0</Numero>
+		<Localidad />
+	</Departamento>
+	<Departamento>
+		<Nombre />
+		<Numero>0</Numero>
+		<Localidad />
+	</Departamento>
+	<Departamento>
+		<Nombre />
+		<Numero>0</Numero>
+		<Localidad />
+	</Departamento>
+	<Departamento>
+		<Nombre />
+		<Numero>0</Numero>
+		<Localidad />
+	</Departamento>
+	<Departamento>
+		<Nombre />
+		<Numero>0</Numero>
+		<Localidad />
+	</Departamento>
+	<Departamento>
+		<Nombre />
+		<Numero>0</Numero>
+		<Localidad />
+	</Departamento>
+	<Departamento>
+		<Nombre />
+		<Numero>0</Numero>
+		<Localidad />
+	</Departamento>
+	<Departamento>
+		<Nombre />
+		<Numero>0</Numero>
+		<Localidad />
+	</Departamento>
+	<Departamento>
+		<Nombre />
+		<Numero>0</Numero>
+		<Localidad />
+	</Departamento>
+	<Departamento>
+		<Nombre />
+		<Numero>0</Numero>
+		<Localidad />
+	</Departamento>
+	<Departamento>
+		<Nombre>d8</Nombre>
+		<Numero>31</Numero>
+		<Localidad>Zam</Localidad>
+	</Departamento>
+	<Departamento>
+		<Nombre />
+		<Numero>0</Numero>
+		<Localidad />
+	</Departamento>
+	<Departamento>
+		<Nombre />
+		<Numero>0</Numero>
+		<Localidad />
+	</Departamento>
+	<Departamento>
+		<Nombre />
+		<Numero>0</Numero>
+		<Localidad />
+	</Departamento>
+	<Departamento>
+		<Nombre />
+		<Numero>0</Numero>
+		<Localidad />
+	</Departamento>
+	<Departamento>
+		<Nombre />
+		<Numero>0</Numero>
+		<Localidad />
+	</Departamento>
+	<Departamento>
+		<Nombre />
+		<Numero>0</Numero>
+		<Localidad />
+	</Departamento>
+	<Departamento>
+		<Nombre />
+		<Numero>0</Numero>
+		<Localidad />
+	</Departamento>
+	<Departamento>
+		<Nombre />
+		<Numero>0</Numero>
+		<Localidad />
+	</Departamento>
+	<Departamento>
+		<Nombre />
+		<Numero>0</Numero>
+		<Localidad />
+	</Departamento>
+	<Departamento>
+		<Nombre />
+		<Numero>0</Numero>
+		<Localidad />
+	</Departamento>
+	<Departamento>
+		<Nombre />
+		<Numero>0</Numero>
+		<Localidad />
+	</Departamento>
+	<Departamento>
+		<Nombre />
+		<Numero>0</Numero>
+		<Localidad />
+	</Departamento>
+	<Departamento>
+		<Nombre />
+		<Numero>0</Numero>
+		<Localidad />
+	</Departamento>
+	<Departamento>
+		<Nombre />
+		<Numero>0</Numero>
+		<Localidad />
+	</Departamento>
+	<Departamento>
+		<Nombre />
+		<Numero>0</Numero>
+		<Localidad />
+	</Departamento>
+	<Departamento>
+		<Nombre />
+		<Numero>0</Numero>
+		<Localidad />
+	</Departamento>
+	<Departamento>
+		<Nombre />
+		<Numero>0</Numero>
+		<Localidad />
+	</Departamento>
+	<Departamento>
+		<Nombre />
+		<Numero>0</Numero>
+		<Localidad />
+	</Departamento>
+	<Departamento>
+		<Nombre />
+		<Numero>0</Numero>
+		<Localidad />
+	</Departamento>
+	<Departamento>
+		<Nombre />
+		<Numero>0</Numero>
+		<Localidad />
+	</Departamento>
+	<Departamento>
+		<Nombre />
+		<Numero>0</Numero>
+		<Localidad />
+	</Departamento>
+	<Departamento>
+		<Nombre />
+		<Numero>0</Numero>
+		<Localidad />
+	</Departamento>
+	<Departamento>
+		<Nombre />
+		<Numero>0</Numero>
+		<Localidad />
+	</Departamento>
+	<Departamento>
+		<Nombre>d5</Nombre>
+		<Numero>55</Numero>
+		<Localidad>Zgz</Localidad>
+	</Departamento>
+	<Departamento>
+		<Nombre />
+		<Numero>0</Numero>
+		<Localidad />
+	</Departamento>
+	<Departamento>
+		<Nombre />
+		<Numero>0</Numero>
+		<Localidad />
+	</Departamento>
+	<Departamento>
+		<Nombre />
+		<Numero>0</Numero>
+		<Localidad />
+	</Departamento>
+	<Departamento>
+		<Nombre />
+		<Numero>0</Numero>
+		<Localidad />
+	</Departamento>
+	<Departamento>
+		<Nombre />
+		<Numero>0</Numero>
+		<Localidad />
+	</Departamento>
+	<Departamento>
+		<Nombre />
+		<Numero>0</Numero>
+		<Localidad />
+	</Departamento>
+	<Departamento>
+		<Nombre />
+		<Numero>0</Numero>
+		<Localidad />
+	</Departamento>
+	<Departamento>
+		<Nombre />
+		<Numero>0</Numero>
+		<Localidad />
+	</Departamento>
+	<Departamento>
+		<Nombre />
+		<Numero>0</Numero>
+		<Localidad />
+	</Departamento>
+	<Departamento>
+		<Nombre>d7</Nombre>
+		<Numero>65</Numero>
+		<Localidad>Mdrd</Localidad>
+	</Departamento>
+</Departamentos>

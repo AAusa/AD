@@ -11,11 +11,11 @@ public class EjemploDerby {
         	// CARGAR EL CONTROLADOR JDBC de la base de datos
         	//Conexion con la BBDD:
 			Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
-			Connection conexion = DriverManager.getConnection("jdbc:derby:bd\\ejemplo.db");
+			Connection conexion = DriverManager.getConnection("jdbc:derby:bd\\biblioteca", "miusuario", "Pass!123456");
 			Statement sentencia = (Statement) conexion.createStatement();
 			
 			//Sentencia SQL para mostrar los codigos y nombres de los socios:
-            ResultSet resultado = sentencia.executeQuery("select * from Socio;");
+            ResultSet resultado = sentencia.executeQuery("select * from libro;");
             
             while (resultado.next()) {
             	System.out.println(resultado.getString(1));

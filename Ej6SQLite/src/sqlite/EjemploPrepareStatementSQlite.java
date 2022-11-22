@@ -1,22 +1,26 @@
 package sqlite;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Scanner;
  
 public class EjemploPrepareStatementSQlite {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
     	Scanner sc = new Scanner(System.in);
     	int cantidad = 0;
     	EjemploPrepareStatementSQlite ej = new EjemploPrepareStatementSQlite();
         try {
         	// CARGAR EL CONTROLADOR JDBC de la base de datos
-        	Class.forName("org.hsqldb.jdbc.JDBCDriver");
-			Connection conexion = DriverManager.getConnection("jdbc:hsqldb:bd\\biblioteca", "miusuario", "Pass!123456");
+        	Class.forName("com.mysql.jdbc.Driver");
+        	// ESTABLECER LA CONEXI�N con la base de datos
+            Connection conexion = DriverManager.getConnection("jdbc:mysql://192.168.56.104:3306/biblioteca","pruebas","Pass!123456");
             // parametro 1 = Driver que utilizamos y ruta y nombre de la base de datos
             //				jdbc:sqlite:C:\\Users\\Eva Royo\\Documents\\BBDD\\sqlite\\biblioteca.db
             // parametro 2 = nombre del usuario
@@ -38,6 +42,7 @@ public class EjemploPrepareStatementSQlite {
                 pstm.setString(3, ej.getAutor());
                 pstm.setString(4, ej.getEditorial());
                 pstm.setInt(5, ej.getAnno());
+                pstm.setDate(4, pasarStringaDate("1970-11-09"));
                 pstm.setString(6, ej.getISBN());
                 pstm.setInt(7, ej.getNumEjemplares());
                 pstm.setInt(8, ej.getNumPaginas());
@@ -61,7 +66,6 @@ public class EjemploPrepareStatementSQlite {
             // LIBRERAR LOS RECURSOS
             //resultado.close();
             //sentencia.close();
-            conexion.commit();//PONERLO SI O SI
             conexion.close();
             
         } catch (SQLException | ClassNotFoundException ex) {
@@ -69,6 +73,11 @@ public class EjemploPrepareStatementSQlite {
             ex.printStackTrace();
         }
     }
+	private static Date pasarStringaDate(String fecha) throws ParseException {
+		SimpleDateFormat formato = new SimpleDateFormat("yyyy/MM/dd");
+		Date fechaDate = (Date) formato.parse(fecha);
+		return fechaDate;
+	}
 	private int obtenerCodigoValido(Connection conexion) throws SQLException {
 		Statement sentencia = (Statement) conexion.createStatement();
         ResultSet resultado = sentencia.executeQuery("select max(codigo) from Libro");

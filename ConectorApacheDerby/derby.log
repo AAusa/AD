@@ -1,5 +1,5 @@
 ----------------------------------------------------------------
-Mon Nov 21 12:27:44 CET 2022D001 : [0] The Apache Software Foundation - Apache Derby - 10.16.1.1 - (1901046), [1] a816c00e-0184-99f1-afc6-00001f6f3ab0, [2] D:\Documentos\WS-AD\AD\ConectorApacheDerby\bd\ejemplo.db, [3] jdk.internal.loader.ClassLoaders$AppClassLoader@548c4f57, [4] file:/D:/Documentos/WS-AD/AD/ConectorApacheDerby/driver/derby.jar
+Tue Nov 22 13:25:02 CET 2022D001 : [0] The Apache Software Foundation - Apache Derby - 10.16.1.1 - (1901046), [1] a816c00e-0184-9f4c-82e3-00001f6f3ab0, [2] D:\Documentos\WS-AD\AD\ConectorApacheDerby\bd\biblioteca, [3] jdk.internal.loader.ClassLoaders$AppClassLoader@548c4f57, [4] file:/D:/Documentos/WS-AD/AD/ConectorApacheDerby/driver/derby.jar
 java.vendor=Oracle Corporation
 java.runtime.version=17.0.4+11-LTS-179
 user.dir=D:\Documentos\WS-AD\AD\ConectorApacheDerby

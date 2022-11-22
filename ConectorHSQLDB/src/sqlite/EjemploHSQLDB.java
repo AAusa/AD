@@ -5,7 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
  
-public class EjemploMySQL {
+public class EjemploHSQLDB {
     public static void main(String[] args) {
         try {
         	// CARGAR EL CONTROLADOR JDBC de la base de datos
