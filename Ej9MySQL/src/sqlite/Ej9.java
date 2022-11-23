@@ -8,11 +8,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
 /**
- * Realiza un programa Java que utilice el driver o conector JDBC con la base de datos biblioteca,
-creada en SQLite o MySQL, y que modifique un socio existente de la tabla SOCIO. Los datos
-del socio a modificar son el domicilio y el teléfono y se introducirán por teclado. En el caso de
-que el socio a modificar no exista en la tabla SOCIO, se deberá mostrar un mensaje por
-pantalla.
+ *  Realiza un programa Java que utilice el driver o conector JDBC con la base de datos biblioteca,
+	creada en SQLite o MySQL, y que modifique un socio existente de la tabla SOCIO. Los datos
+	del socio a modificar son el domicilio y el teléfono y se introducirán por teclado. En el caso de
+	que el socio a modificar no exista en la tabla SOCIO, se deberá mostrar un mensaje por
+	pantalla.
  * @author Alvaro
  */
 public class Ej9 {
