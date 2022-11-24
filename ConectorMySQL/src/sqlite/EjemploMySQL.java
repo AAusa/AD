@@ -8,6 +8,15 @@ import java.sql.Statement;
 public class EjemploMySQL {
     public static void main(String[] args) {
         try {
+        	String[] consultas = {"select * from libro;",
+					"select * from socio;", "select * from prestamo;",
+					"select Titulo, Nombre from prestamo, libro, socio where libro.Codigo = prestamo.Clibro AND socio.Codigo = prestamo.Csocio AND prestamo.Ffin > now()",
+					"select count(prestamo.Clibro) as 'numLibros' from prestamo, socio where socio.Codigo = prestamo.Csocio AND socio.Nombre = 'Mustafa'",
+					"select Titulo, Nombre from prestamo, libro, socio where libro.Codigo = prestamo.Clibro AND socio.Codigo = prestamo.Csocio AND prestamo.Ffin < now()",
+					"select DISTINCT socio.Nombre, socio.Apellidos from prestamo, libro, socio where libro.Codigo = prestamo.Clibro AND socio.Codigo = prestamo.Csocio AND prestamo.Ffin < now() GROUP by socio.Codigo",
+					"select DISTINCT socio.Nombre, socio.Apellidos from prestamo, libro, socio where libro.Codigo = prestamo.Clibro AND socio.Codigo = prestamo.Csocio AND prestamo.Ffin < now()",
+					"select prestamo.Finio from prestamo, libro, socio where libro.Codigo = prestamo.Clibro AND socio.Codigo = prestamo.Csocio AND prestamo.Ffin < now()"};
+						
         	// CARGAR EL CONTROLADOR JDBC de la base de datos
         	Class.forName("com.mysql.jdbc.Driver");
         	
@@ -21,10 +30,10 @@ public class EjemploMySQL {
             
             // PREPARAMOS LA SENTENCIA SQL
             Statement sentencia = (Statement) conexion.createStatement();
-            ResultSet resultado = sentencia.executeQuery("select * from socio");
+            ResultSet resultado = sentencia.executeQuery(consultas[8]);
             // recorro el resultado
             while (resultado.next()) {
-            	System.out.println(resultado.getString("Nombre"));
+            	System.out.println(resultado.getDate(1));
             }
             
             // LIBRERAR LOS RECURSOS

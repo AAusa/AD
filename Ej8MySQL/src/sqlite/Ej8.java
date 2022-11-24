@@ -34,7 +34,7 @@ public class Ej8 {
 			}
 
 			//En caso de q el isbn no se repita 
-			String sql = "INSERT INTO libro VALUES (?, 't', 'a', 'e', 12, 132120,66, 2);";
+			String sql = "INSERT INTO libro VALUES (?, 't', 'a', 'e', 12, 13222220,66, 2);";
 
 			PreparedStatement pstm = conexion.prepareStatement(sql);
 			pstm.setInt(1, idSocio);
