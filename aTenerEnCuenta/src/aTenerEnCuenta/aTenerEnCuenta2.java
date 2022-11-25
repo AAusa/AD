@@ -1,16 +1,6 @@
 package aTenerEnCuenta;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.SQLNonTransientException;
-import java.sql.SQLRecoverableException;
-import java.sql.SQLTransientException;
-import java.sql.Statement;
-
-public class aTenerEnCuenta {
+public class aTenerEnCuenta2 {
 	/**
 Práctica:
 String a int: int numEntero = Integer.parseInt(numCadena);
@@ -107,56 +97,7 @@ Aleatorio tamannos:
 	double (8 bytes)
 	 */
 	public static void main(String[] args) {
-		//Solo se conecta al principio para todas las operaciones
-		try {
-			Class.forName("org.sqlite.JDBC");
-		} catch (ClassNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		//Como con prepare statement solo se necesita cerrar la conexion se pone en el try
-		String sql = "INSERT INTO socio VALUES (?,?,?,?,?,?)";
-		try(Connection conexion = DriverManager.getConnection("jdbc:sqlite:src\\aTenerEnCuenta\\biblioteca.db");
-				PreparedStatement pstm = conexion.prepareStatement(sql)) {
-			pstm.setInt(1, 46);
-			pstm.setString(2, "Pepe");
-			pstm.setString(3, "Martinez");
-			pstm.setString(4, "1970-11-09");
-			pstm.setString(5, "C/ Patatin, 33");
-			pstm.setInt(6, 650766546);
-
-			int cantidad = pstm.executeUpdate();
-			//int cantidad = sentencia.executeUpdate(sql);
-
-
-			// recorro el resultado
-			System.out.println("se han insertado " + cantidad + "socios");
-
-		} catch(SQLNonTransientException e) {
-			System.out.println("Sentencia correcta pero repetida");
-			e.printStackTrace();
-		} catch(SQLTransientException es) {
-			System.out.println("Sentencia correcta pero transitoria");
-			es.printStackTrace();
-		} catch(SQLRecoverableException es) {
-			System.out.println("Error de reestablecimiento de conexion");
-			es.printStackTrace();
-		} catch (SQLException ex) {
-			System.out.println("Error en la conexi�n de la base de datos");
-			ex.printStackTrace();
-		}
-
-		//Con createStatement se pone la conexion, sentencia y resultado en el try
-		try(Connection conexion = DriverManager.getConnection("jdbc:sqlite:src\\aTenerEnCuenta\\biblioteca.db");
-				Statement sentencia = (Statement) conexion.createStatement();
-				ResultSet resultado = sentencia.executeQuery("select * from socio")) {
-			
-			while (resultado.next()) {
-				System.out.println(resultado.getInt(1) + "-"+ resultado.getString(2));
-			}
-		} catch (SQLException ex) {
-			System.out.println("Error en la conexi�n de la base de datos");
-			ex.printStackTrace();
-		}
+		Utilidades.pedirCadena("Introduce cadena:", "hola".toUpperCase());
+		Utilidades.pedirEntero("Introduce entero:");
 	}
 }
