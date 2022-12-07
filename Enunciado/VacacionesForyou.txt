@@ -1,0 +1,9 @@
+﻿Pedro;Sanz;666777888;C/San Quintín, 19;pedrosanz@gmail.com;VIP
+Marta;Gimeno;666111222;C/Federico García Lorca, 22 Duplicado;222B@gmail.com;VIP
+Alberto;Rubio;666444555;Plaza de España s/n;alber23@gmail.com
+Elena;Sanchez;666999000;C/Maria de la O, 32;sanchez_da@hotmail.com
+Pablo;Martinez;666333222;C/Paquita Salas, 112;pablo_martinez@gmail.com;VIP
+Felipa;Gracia;564547901;C/Mercader, 2, 3ºA;garcia_felipa@hotmail.com
+Julia;Mendez;639876765;C/Pedro Sanchez, 1;julia@hotmail.com
+Ana;Perez;609772012;Plaza de las Flores, 32;anaperez@gmail.com
+Lorena;Ruiz;640223119;C/San Francisco, 9;lore@hotmail.com;VIP
