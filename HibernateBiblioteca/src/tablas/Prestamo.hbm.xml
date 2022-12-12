@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 12 dic 2022 12:15:42 by Hibernate Tools 5.6.12.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="biblioteca" name="tablas.Prestamo" optimistic-lock="none" table="prestamo">
+        <composite-id class="tablas.PrestamoId" name="id">
+            <key-property name="clibro" type="int">
+                <column name="Clibro"/>
+            </key-property>
+            <key-property name="csocio" type="int">
+                <column name="Csocio"/>
+            </key-property>
+        </composite-id>
+        <many-to-one class="tablas.Libro" fetch="select" insert="false" name="libro" update="false">
+            <column name="Clibro" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="tablas.Socio" fetch="select" insert="false" name="socio" update="false">
+            <column name="Csocio" not-null="true"/>
+        </many-to-one>
+        <property name="finio" type="date">
+            <column length="10" name="Finio"/>
+        </property>
+        <property name="ffin" type="date">
+            <column length="10" name="Ffin"/>
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 12 dic 2022 11:10:18 by Hibernate Tools 5.6.12.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="Vacacionesforyou" name="tablas.Clientes" optimistic-lock="none" table="Clientes">
+        <composite-id class="tablas.ClientesId" name="id">
+            <key-property name="id" type="int">
+                <column name="id"/>
+            </key-property>
+            <key-property name="nombre" type="string">
+                <column length="50" name="nombre"/>
+            </key-property>
+            <key-property name="apellidos" type="string">
+                <column length="100" name="apellidos"/>
+            </key-property>
+            <key-property name="telefono" type="int">
+                <column name="telefono"/>
+            </key-property>
+            <key-property name="direccion" type="string">
+                <column length="200" name="direccion"/>
+            </key-property>
+            <key-property name="email" type="string">
+                <column length="200" name="email"/>
+            </key-property>
+            <key-property name="vip" type="boolean">
+                <column name="vip"/>
+            </key-property>
+        </composite-id>
+    </class>
+</hibernate-mapping>
