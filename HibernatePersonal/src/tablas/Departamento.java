@@ -9,6 +9,12 @@ import java.util.Set;
  */
 public class Departamento implements java.io.Serializable {
 
+	@Override
+	public String toString() {
+		return "Departamento [idDep=" + idDep + ", nombre=" + nombre + ", localidad=" + localidad + ", empleados="
+				+ empleados + "]";
+	}
+
 	private byte idDep;
 	private String nombre;
 	private String localidad;
