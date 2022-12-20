@@ -1,10 +1,14 @@
 package app;
 
-import java.sql.Date;
+import java.util.Date;
+import java.util.HashSet;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.InputMismatchException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -17,7 +21,7 @@ import tablas.*;
 
 public class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ParseException {
 
 		// ------------------UTILIZAMOS LO DEFINIDO ANTES-------------
 		//obtener la f�brica de la conexi�n actual para crear una sesi�n
@@ -44,21 +48,28 @@ public class Main {
 				opcion = sn.nextInt();
 				switch (opcion) {
 				case 1:
+					verDptos(sesion);
 					System.out.println("Modificar un departamento");
 					updateDpto(sesion);
-					tx.commit();
 					break;
 				case 2:
+					verEmpleados(sesion);
 					System.out.println("Insertar un empleado");
+					insertarEmpleado(sesion);
 					break;
 				case 3:
 					System.out.println("Leer un empleado, y además, su departamento correspondiente");
+					leerEmpleado(sesion);
 					break;
 				case 4:
+					verEmpleados(sesion);
 					System.out.println("Eliminar un empleado");
+					eliminarEmpleado(sesion);
 					break;
 				case 5:
+					verDptos(sesion);
 					System.out.println("Eliminar un departamento. Previamente, se debe eliminar todos los empleados de dicho departamento. Utiliza una transacción.");
+					eliminarDpto(sesion);
 					break;
 				case 6:
 					salir = true;
@@ -71,11 +82,11 @@ public class Main {
 				sn.next();
 			}
 		}
-		while (!salir) ;
+		while (!salir);
 
 
 
-
+		tx.commit();
 		sesion.close();
 		fabrica.close();
 		System.exit(0);
@@ -119,10 +130,11 @@ public class Main {
 		System.out.println("FUNCIONO!!");
 	}
 	
-	private static void insertarEmpleado(Session sesion) {
+	private static void insertarEmpleado(Session sesion) throws ParseException {
 		Scanner sn = new Scanner(System.in);
 		System.out.println("Introduce id del dpto al q pertenece:");
-		String idNew = sn.nextLine(); 
+		int idNew = sn.nextInt(); sn.nextLine();
+		Departamento dpto = (Departamento)sesion.get(Departamento.class, (byte)idNew);
 		System.out.println("Introduce nuevo apellido:");
 		String apellido = sn.nextLine(); 
 		System.out.println("Introduce nuevo oficio:");
@@ -133,31 +145,86 @@ public class Main {
 		float salario = sn.nextInt();sn.nextLine();	
 		System.out.println("Introduce nueva comision:");
 		float comision = sn.nextInt();sn.nextLine();
-		Empleado e = new Empleado(proximo_id(sesion), apellido, oficio, fecha, salario, comision);
+		Empleado e = new Empleado(proximo_id(sesion), dpto, apellido, oficio, pasarStringaDate(fecha), salario, comision);
+		sesion.saveOrUpdate(e);
 	}
 	
-	private static int proximo_id(Session sesion) {
-		Query<Integer> q = sesion.createQuery("select max(idEmp) from Empleado");
-		Integer res = q.getSingleResult();
-		return res.intValue()+1;
+	private static Date pasarStringaDate(String fecha) throws ParseException {
+		SimpleDateFormat formato = new SimpleDateFormat("yyyy/MM/dd");
+		Date fechaDate = (Date) formato.parse(fecha);
+		return fechaDate;
+	}
+	
+	private static short proximo_id(Session sesion) {
+		Query<Short> q = sesion.createQuery("select max(idEmp) from Empleado");
+		Short res = q.getSingleResult();
+		short res1 = res.shortValue();
+		res1++;
+		return res1;
 	}
 
 
 	private static void verEmpleados(Session sesion) {
-		System.out.println("Leo los empleados");	
+		System.out.println("Empleados:");	
 		Query<Empleado> q = sesion.createQuery("from Empleado");
-
 		List <Empleado> lista = q.list();
 		// Obtenemos un Iterador y recorremos la lista.
 		Iterator <Empleado> iter = lista.iterator();
-		System.out.println("Numero de registros:"  + lista.size());
 		while (iter.hasNext())
 		{
 			//extraer el objeto
 			Empleado empleado = (Empleado) iter.next(); 
-			System.out.println(empleado.toString());		   
+			System.out.println("\t"+empleado.toString());		   
 		}
-		System.out.println("FUNCIONO!!");
+		System.out.println("\n\tNumero de registros:"  + lista.size());
 	}
-
+	
+	private static void verDptos(Session sesion) {
+		System.out.println("Dptos:");	
+		Query<Departamento> q = sesion.createQuery("from Departamento");
+		List <Departamento> lista = q.list();
+		// Obtenemos un Iterador y recorremos la lista.
+		Iterator <Departamento> iter = lista.iterator();
+		while (iter.hasNext())
+		{
+			//extraer el objeto
+			Departamento departamento = (Departamento) iter.next(); 
+			System.out.println("\t"+departamento.toString());		   
+		}
+		System.out.println("\n\tNumero de registros:"  + lista.size());
+	}
+	
+	private static void leerEmpleado(Session sesion) {
+		Scanner sn = new Scanner(System.in);
+		System.out.println("Introduce id del empleado a leer:");
+		int id = sn.nextInt(); sn.nextLine();
+		Empleado e = (Empleado)sesion.get(Empleado.class, (short)id);
+		System.out.println(e+"\n"+e.getDepartamento());
+	}
+	
+	private static void eliminarEmpleado(Session sesion) {
+		Scanner sn = new Scanner(System.in);
+		System.out.println("Introduce id del empleado a eliminar:");
+		int id = sn.nextInt(); sn.nextLine();
+		Empleado e = (Empleado)sesion.get(Empleado.class, (short)id);
+		sesion.delete(e);
+	}
+	
+	private static void eliminarDpto(Session sesion) {
+		Scanner sn = new Scanner(System.in);
+		System.out.println("Introduce id de dpto a borrar:");
+		int idNew = sn.nextInt(); sn.nextLine();
+		Departamento dpto = (Departamento)sesion.get(Departamento.class, (byte)idNew);
+		Set empleados = dpto.getEmpleados();
+		
+		for (Object e : empleados) {
+			if(e.getClass() == Empleado.class) {
+				Empleado e2 = (Empleado) e;//cast
+				int id = e2.getIdEmp();
+				Empleado empleado = (Empleado)sesion.get(Empleado.class, (short)id);
+				sesion.delete(empleado);
+			}
+		}
+		sesion.delete(dpto);
+	}
 }
