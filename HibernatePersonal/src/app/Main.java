@@ -21,7 +21,7 @@ import tablas.*;
 
 public class Main {
 
-	public static void main(String[] args) throws ParseException {
+	public static void main(String[] args) {
 
 		// ------------------UTILIZAMOS LO DEFINIDO ANTES-------------
 		//obtener la f�brica de la conexi�n actual para crear una sesi�n
@@ -130,7 +130,7 @@ public class Main {
 		System.out.println("FUNCIONO!!");
 	}
 	
-	private static void insertarEmpleado(Session sesion) throws ParseException {
+	private static void insertarEmpleado(Session sesion) {
 		Scanner sn = new Scanner(System.in);
 		System.out.println("Introduce id del dpto al q pertenece:");
 		int idNew = sn.nextInt(); sn.nextLine();
@@ -139,19 +139,27 @@ public class Main {
 		String apellido = sn.nextLine(); 
 		System.out.println("Introduce nuevo oficio:");
 		String oficio = sn.nextLine(); 
-		System.out.println("Introduce nueva fecha alta:");
-		String fecha = sn.nextLine();
 		System.out.println("Introduce nuevo salario:");
 		float salario = sn.nextInt();sn.nextLine();	
 		System.out.println("Introduce nueva comision:");
 		float comision = sn.nextInt();sn.nextLine();
-		Empleado e = new Empleado(proximo_id(sesion), dpto, apellido, oficio, pasarStringaDate(fecha), salario, comision);
+		Empleado e = new Empleado(proximo_id(sesion), dpto, apellido, oficio, pasarStringaDate(sn), salario, comision);
 		sesion.saveOrUpdate(e);
 	}
 	
-	private static Date pasarStringaDate(String fecha) throws ParseException {
+	private static Date pasarStringaDate(Scanner sn) {
 		SimpleDateFormat formato = new SimpleDateFormat("yyyy/MM/dd");
-		Date fechaDate = (Date) formato.parse(fecha);
+		boolean salir = false;
+		Date fechaDate = null;
+		System.out.println("Introduce nueva fecha alta:");
+		while(!salir) {
+			try {
+				fechaDate = (Date) formato.parse(sn.nextLine());
+				salir = true;
+			} catch(ParseException e) {
+				System.out.println("Error al convertir la fecha, introduzca de nuevo:");
+			}
+		}
 		return fechaDate;
 	}
 	
@@ -178,6 +186,7 @@ public class Main {
 		}
 		System.out.println("\n\tNumero de registros:"  + lista.size());
 	}
+
 	
 	private static void verDptos(Session sesion) {
 		System.out.println("Dptos:");	
@@ -207,7 +216,13 @@ public class Main {
 		System.out.println("Introduce id del empleado a eliminar:");
 		int id = sn.nextInt(); sn.nextLine();
 		Empleado e = (Empleado)sesion.get(Empleado.class, (short)id);
-		sesion.delete(e);
+		if(e == null) {
+			System.out.println("El empleado indicado no existe");	
+		}
+		else {
+			sesion.delete(e);
+		}
+	
 	}
 	
 	private static void eliminarDpto(Session sesion) {
