@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 9 ene 2023 12:00:50 by Hibernate Tools 5.6.12.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="Ventas" name="tablas.Cliente" optimistic-lock="none" table="cliente">
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="nombre" type="string">
+            <column length="50" name="nombre"/>
+        </property>
+        <property name="direccion" type="string">
+            <column length="50" name="direccion"/>
+        </property>
+        <property name="poblacion" type="string">
+            <column length="50" name="poblacion"/>
+        </property>
+        <property name="telef" type="string">
+            <column length="9" name="telef"/>
+        </property>
+        <property name="nif" type="string">
+            <column length="9" name="nif" unique="true"/>
+        </property>
+        <set fetch="select" inverse="true" lazy="true" name="ventas" table="venta">
+            <key>
+                <column name="id_cliente" not-null="true"/>
+            </key>
+            <one-to-many class="tablas.Venta"/>
+        </set>
+    </class>
+</hibernate-mapping>
