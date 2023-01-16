@@ -3,7 +3,12 @@ package datos;
 import java.util.Date;
 
 public class Empleado {
-	 private int id_emp;
+	 @Override
+	public String toString() {
+		return "Empleado [id_emp=" + id_emp + ", apellido=" + apellido + ", oficio=" + oficio + ", fecha_alta="
+				+ fecha_alta + ", salario=" + salario + ", comision=" + comision + "]";
+	}
+	private int id_emp;
 	 private String apellido;
 	 private String oficio;
 	 private Date fecha_alta;
