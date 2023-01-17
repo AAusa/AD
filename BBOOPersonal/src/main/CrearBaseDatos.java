@@ -11,6 +11,7 @@ public class CrearBaseDatos {
 		Departamento dep1 = new Departamento(0, "Matematicas", "Zaragoza");
 		Departamento dep2 = new Departamento(0, "Fisica", "Zaragoza");
 		Departamento dep3 = new Departamento(0, "Filosofia", "Zaragoza");
+		Departamento dep4 = new Departamento(10, "Filosofia", "Zaragoza");
 		
 		//es el jefe de informatica
 		Empleado emp = new Empleado(0, "Martinez", "profesor", null, 12000, 12, null, dep);
@@ -23,6 +24,7 @@ public class CrearBaseDatos {
 		// empleados de mates
 		Empleado emp6 = new Empleado(1, "Jimena", "profesor", null, 12000, 12, emp5, dep1);
 		Empleado emp7 = new Empleado(1, "Perez", "profesor", null, 12000, 12, emp5, dep1);
+		Empleado emp8 = new Empleado(5, "Perez", "profesor", null, 12000, 12, emp5, dep4);
 		
 		//abrir la base de datos
 		ODB bd = ODBFactory.open("D:\\Documentos\\BBDD\\personal.db", "miUsuario", "Pass!123456");
