@@ -49,6 +49,7 @@ F) Obtener el número de empleados de cada departamento. (OPCIONAL)
 					break;
 				case 2:
 					System.out.println("Opcion 2 seleccionada");
+					//comparar date en ICriterion
 					break;
 				case 3:
 					System.out.println("Opcion 3 seleccionada");
@@ -56,10 +57,15 @@ F) Obtener el número de empleados de cada departamento. (OPCIONAL)
 					//Igual que el 4 pero sin mostrando todo
 					break;
 				case 4:
+					System.out.println("Opcion 4 seleccionada");
+					ej3.query4(bd);
 					break;
 				case 5:
+					ej3.query5(bd);
 					break;
 				case 6:
+					ej3.query6(bd);
+					
 					break;
 				case 7:
 					salir = true;
@@ -105,27 +111,70 @@ F) Obtener el número de empleados de cada departamento. (OPCIONAL)
 	}
 
 	private void query3(ODB bd) {
-		Departamento d10 = null;
 		try {
-			Objects<Departamento> departamentos = bd.getObjects(Departamento.class);
-
-			for (Departamento d : departamentos) {
-				if(d.getId_dep() == 10) {
-					d10 = d;
-				}
-			}
-			System.out.println(d10.getLocalidad());
-			ICriterion criterio = Where.equal("departamento", d10);
+			ICriterion criterio = Where.equal("departamento.id_dep", 10);			
 			IQuery consulta = new CriteriaQuery(Empleado.class, criterio);
-
-			//consulta.orderByAsc("edad");
-			//tambien se pueden hacer con And o Or
-
-			//mostrar los resultados de la consulta
 			Objects<Empleado> empleados = bd.getObjects(consulta);
 
 			for (Empleado e : empleados) {
 				System.out.println("\t"+e.getApellido());
+			}
+
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+	
+	private void query4(ODB bd) {
+		try {
+			ICriterion criterio = Where.equal("jefe.apellido", "Martinez");			
+			IQuery consulta = new CriteriaQuery(Empleado.class, criterio);
+			Objects<Empleado> empleados = bd.getObjects(consulta);
+
+			for (Empleado e : empleados) {
+				System.out.println("\t"+e.getApellido());
+			}
+
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+	
+	private void query5(ODB bd) {
+		int contador = 0;
+		try {
+			ICriterion criterio = Where.equal("departamento.nombre", "Matematicas");			
+			IQuery consulta = new CriteriaQuery(Empleado.class, criterio);
+			Objects<Empleado> empleados = bd.getObjects(consulta);
+
+			for (Empleado e : empleados) {
+				contador++;
+			}
+			System.out.println("Hay "+contador+" empleados");
+
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+	
+	private void query6(ODB bd) {
+		int contador = 0;
+		try {
+			ICriterion criterio = Where.equal("departamento.nombre", "Matematicas");			
+			IQuery consulta = new CriteriaQuery(Empleado.class, criterio);
+			Objects<Departamento> departamentos = bd.getObjects(Departamento.class);
+			
+			// asignar el jugador al equipo
+			for (Departamento d : departamentos) {
+				ICriterion criterio2 = Where.equal("departamento.nombre", d.getNombre());			
+				IQuery consulta2 = new CriteriaQuery(Empleado.class, criterio2);
+				Objects<Empleado> empleados = bd.getObjects(consulta2);
+
+				for (Empleado e : empleados) {
+					contador++;
+				}
+				System.out.println("Hay "+contador+" empleados en: "+d.getNombre());
+
 			}
 
 		} catch (Exception e) {

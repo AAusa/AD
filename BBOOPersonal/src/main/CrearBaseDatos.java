@@ -31,7 +31,7 @@ public class CrearBaseDatos {
 		bd.store(dep);
 		bd.store(dep1);
 		bd.store(dep2);
-		bd.store(dep3);
+		//bd.store(dep3);
 		bd.store(emp);
 		bd.store(emp2);
 		bd.store(emp3);
@@ -39,6 +39,9 @@ public class CrearBaseDatos {
 		bd.store(emp5);
 		bd.store(emp6);
 		bd.store(emp7);
+		
+		bd.store(dep4);		
+		bd.store(emp8);
 		bd.close();
 	}
 }
