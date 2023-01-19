@@ -1,1 +1,1 @@
-# Data Access course project
+# Data Access subject project
