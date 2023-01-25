@@ -1,0 +1,46 @@
+xquery version "3.1";
+
+Ej1:
+A)
+for $libro in doc("pruebas/libros.xml")//libro
+let $autores := $libro/autor
+where count($autores) > 2
+return $libro
+
+for $libro in doc("pruebas/libros.xml")//libro
+where count($libro/autor) > 2
+return $libro
+
+B)
+for $libro in doc("pruebas/libros.xml")//libro
+return 
+<libro>
+    {
+    $libro/titulo,
+    <autores> {count($libro/autor)}</autores> 
+    }
+</libro>
+
+
+D)
+<resultado> {
+<resultado>
+{
+for $apellido in distinct-values(doc("pruebas/libros.xml")//libro/autor)
+order by $apellido
+return 
+    <apellidoAutor>{ $apellido }</apellidoAutor>
+} 
+</resultado>
+
+
+Ej if:
+<edit>
+    {
+    for $libro in doc("pruebas/libros.xml")//libro
+    return
+        if($libro/autor/apellido="Stevens")
+        then <ed>{data($libro/titulo)}</ed>
+        else <noEd>{data($libro/titulo)}</noEd>
+    }
+</edit>
