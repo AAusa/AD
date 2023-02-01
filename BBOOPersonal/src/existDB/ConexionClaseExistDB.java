@@ -14,7 +14,7 @@ public class ConexionClaseExistDB {
 	public static void main(String[] args) {
 		// driver que necesito para conectar existDB
 		String driver  =  "org.exist.xmldb.DatabaseImpl";
-		
+		Collection miDB = null;
 		// cargar el driver
 		Class cl;
 		try {
@@ -27,13 +27,13 @@ public class ConexionClaseExistDB {
 	        DatabaseManager.registerDatabase(BD);
 	        
 	        // La cadena de conexion
-	        String URI = "xmldb:exist://192.168.56.102:8080/exist/xmlrpc/db/ejemplos";
+	        String URI = "xmldb:exist://192.168.56.104:8080/exist/xmlrpc/db/pruebas";
 	        
-	        Collection miDB = DatabaseManager.getCollection(URI, "miUsuario", "Pass!123456");
+	        miDB = DatabaseManager.getCollection(URI, "miusuario", "Pass!123456");
 	        
 	        XPathQueryService servicio = (XPathQueryService)miDB.getService("XPathQueryService", "1.0");
 	        
-	        String query = "for $l in doc(\"/db/ejemplos/libros.xml\")//libro where $l/precio < 50 return $l";
+	        String query = "for $l in doc(\"libros.xml\")//libro where $l/precio < 50 return $l/titulo/text()";
 	        ResourceSet resultado = servicio.query(query);
 	        ResourceIterator itera = resultado.getIterator();
 	       
