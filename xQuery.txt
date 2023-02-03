@@ -44,3 +44,19 @@ Ej if:
         else <noEd>{data($libro/titulo)}</noEd>
     }
 </edit>
+
+
+Ej1entregar, punto4 a medias:
+for $l in doc("/db/pruebas/libros.xml")//libro 
+where exists($l/autor) 
+return <libro>{$l/titulo}{$l/autor}</libro>
+
+Ej1entregar, punto4 terminado:
+for $l in doc("/db/pruebas/libros.xml")//libro 
+return 
+    if(exists($l/autor))
+    then <libro>{$l/titulo}{$l/autor}</libro>
+    else
+        if(exists($l/editor))
+        then <libro>{$l/titulo}{$l/editor/afiliacion}</libro>
+        else <libro>{$l/titulo}{$l/editor/afiliacion}</libro>
