@@ -5,7 +5,7 @@ import java.io.Serializable;
 import com.dao.VoluntarioDAO;
 import com.modelo.Voluntario;
 
-public class VoluntarioImplOO implements VoluntarioDAO {
+public class VoluntarioImplMySQL implements VoluntarioDAO {
 
 	@Override
 	public boolean inserta(Voluntario elemento) {
@@ -30,6 +30,6 @@ public class VoluntarioImplOO implements VoluntarioDAO {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 	
+
 }

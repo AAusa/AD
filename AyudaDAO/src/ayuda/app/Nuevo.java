@@ -24,8 +24,8 @@ public class Nuevo {
 		Transaction tx = sesion.beginTransaction();
 		
 		
-		int id = proximo_id(sesion);
-		Voluntario vol = new Voluntario(0, "nombre", "Apellido", 19, "Masculino", "Soltero", "Transporte", "Mañana");
+		//int id = proximo_id(sesion);
+		Voluntario vol = new Voluntario(1, "nombre", "Apellido", 19, "Masculino", "Soltero", "Transporte", "Mañana");
 		
 		sesion.save(vol);
 		

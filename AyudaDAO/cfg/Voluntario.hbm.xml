@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 6 feb 2023 11:51:31 by Hibernate Tools 5.6.12.Final -->
+<hibernate-mapping>
+ <class catalog="Ayuda" name="com.modelo.Voluntario"
+  optimistic-lock="none" table="Voluntario">
+  <id name="id" type="int">
+   <column name="Id"/>
+   <generator class="assigned"/>
+  </id>
+  <property generated="never" lazy="false" name="nombre" type="string">
+   <column length="30" name="Nombre" not-null="true"/>
+  </property>
+  <property generated="never" lazy="false" name="apellido" type="string">
+   <column length="30" name="Apellido" not-null="true"/>
+  </property>
+  <property generated="never" lazy="false" name="edad" type="int">
+   <column name="Edad" not-null="true"/>
+  </property>
+  <property generated="never" lazy="false" name="sexo" type="string">
+   <column length="15" name="Sexo" not-null="true"/>
+  </property>
+  <property generated="never" lazy="false" name="estadoCivil" type="string">
+   <column length="30" name="EstadoCivil" not-null="true"/>
+  </property>
+  <property generated="never" lazy="false" name="necesidades" type="string">
+   <column length="50" name="Necesidades" not-null="true"/>
+  </property>
+  <property generated="never" lazy="false" name="disponibilidad" type="string">
+   <column length="30" name="Disponibilidad" not-null="true"/>
+  </property>
+  <set fetch="select" inverse="true" lazy="true" name="necesidads"
+   sort="unsorted" table="Necesidad">
+   <key>
+    <column name="IdVoluntario" not-null="true"/>
+   </key>
+   <one-to-many class="com.modelo.Necesidad"/>
+  </set>
+ </class>
+</hibernate-mapping>

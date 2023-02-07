@@ -7,7 +7,7 @@ import org.hibernate.cfg.Configuration;
 
 /**
  * PATRON SINGLETON PARA CREAR UNA F�BRICA DE CONEXIONES A LA BD
- * es un patr�n singleton porque s�lo puede haber una �nica conexi�n 
+ * es un patron singleton porque s�lo puede haber una �nica conexi�n 
  * a la BD, por tanto, nos aseguramos con esta forma de codificar que
  * simpre tendremos �nicamente una sola conexi�n.
  * 
@@ -24,7 +24,7 @@ public class HibernateUtil {
 	private static SessionFactory buildSessionFactory() {
 		try {
 			//creamos la f�brica de sesiones utilizando hibernate.cfg.xml
-			Configuration configuration = new Configuration().configure("ayuda/cfg/hibernate.cfg.xml");
+			Configuration configuration = new Configuration().configure();
 			StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().configure() ;          	
 			return configuration.buildSessionFactory(builder.build());
 			
