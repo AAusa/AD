@@ -24,9 +24,6 @@
   <property generated="never" lazy="false" name="estadoCivil" type="string">
    <column length="30" name="EstadoCivil" not-null="true"/>
   </property>
-  <property generated="never" lazy="false" name="necesidades" type="string">
-   <column length="50" name="Necesidades" not-null="true"/>
-  </property>
   <set fetch="select" inverse="true" lazy="true" name="necesidads"
    sort="unsorted" table="Necesidad">
    <key>

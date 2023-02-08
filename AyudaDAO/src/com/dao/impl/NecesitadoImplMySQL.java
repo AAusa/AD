@@ -1,5 +1,32 @@
 package com.dao.impl;
 
-public class NecesitadoImplMySQL {
+import com.dao.NecesitadoDAO;
+import com.modelo.Necesitado;
+
+public class NecesitadoImplMySQL implements NecesitadoDAO {
+
+	@Override
+	public boolean inserta(Necesitado elemento) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean elimina(Integer id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean modifica(Integer id, Necesitado elemento) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public Necesitado consulta(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

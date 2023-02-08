@@ -8,6 +8,13 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+
+import com.controlador.NecesidadControlador;
+import com.controlador.NecesitadoControlador;
+import com.controlador.VoluntarioControlador;
+import com.modelo.Necesidad;
+import com.modelo.NecesidadId;
+import com.modelo.Necesitado;
 import com.modelo.Voluntario;
 
 public class Nuevo {
@@ -25,14 +32,38 @@ public class Nuevo {
 		
 		
 		//int id = proximo_id(sesion);
-		Voluntario vol = new Voluntario(1, "nombre", "Apellido", 19, "Masculino", "Soltero", "Transporte", "Mañana");
+		Voluntario vol = new Voluntario(1, "nombre", "Apellido", 19, "Masculino", "Soltero", "Mañana");
+		Voluntario vol2 = new Voluntario(2, "nombre2", "Apellido", 19, "Masculino", "Soltero", "Mañana");
+
+		VoluntarioControlador vc = new VoluntarioControlador("OO");
+		/*
+		vc.inserta(vol);
+		vc.modifica(vol.getId(), vol2);
+		vc.elimina(vol2.getId());
+		*/
+		Necesitado nec = new Necesitado(1, "nombre", "Apellido", 19, "Masculino", "Soltero");
+		Necesitado nec2 = new Necesitado(2, "nombre2", "Apellido", 19, "Masculino", "Soltero");
+		Necesitado nec3 = new Necesitado(3, "nombre3", "Apellido", 19, "Masculino", "Soltero");
+		NecesitadoControlador nc = new NecesitadoControlador("OO");
+		nc.inserta(nec);
+		//nc.inserta(nec3);
+		//nc.modifica(nec.getId(), nec2);
+		//nc.elimina(nec3.getId());
 		
-		sesion.save(vol);
+		NecesidadId nId = new NecesidadId(1,1);
+		Necesidad nece = new Necesidad(nId, nec, vol, "Transporte", "Mañana");
+		Necesidad nece2 = new Necesidad(nId, nec, vol, "Comida", "Mañana");
+		NecesidadControlador necec = new NecesidadControlador("OO");
+		necec.inserta(nece);
+		necec.inserta(nece2);
+		necec.modifica(nece.getId(), nece2);
+		necec.elimina(nece2.getId());
+		//sesion.save(vol);
 		
 
 		System.out.println("FUNCIONO!!");
 		
-		tx.commit();
+		//tx.commit();
 		
 		
 		

@@ -17,32 +17,27 @@ public class Necesitado implements java.io.Serializable {
 	private int edad;
 	private String sexo;
 	private String estadoCivil;
-	private String necesidades;
 	private Set necesidads = new HashSet(0);
 
 	public Necesitado() {
 	}
 
-	public Necesitado(int id, String nombre, String apellido, int edad, String sexo, String estadoCivil,
-			String necesidades) {
+	public Necesitado(int id, String nombre, String apellido, int edad, String sexo, String estadoCivil) {
 		this.id = id;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.edad = edad;
 		this.sexo = sexo;
 		this.estadoCivil = estadoCivil;
-		this.necesidades = necesidades;
 	}
 
-	public Necesitado(int id, String nombre, String apellido, int edad, String sexo, String estadoCivil,
-			String necesidades, Set necesidads) {
+	public Necesitado(int id, String nombre, String apellido, int edad, String sexo, String estadoCivil,Set necesidads) {
 		this.id = id;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.edad = edad;
 		this.sexo = sexo;
 		this.estadoCivil = estadoCivil;
-		this.necesidades = necesidades;
 		this.necesidads = necesidads;
 	}
 
@@ -92,14 +87,6 @@ public class Necesitado implements java.io.Serializable {
 
 	public void setEstadoCivil(String estadoCivil) {
 		this.estadoCivil = estadoCivil;
-	}
-
-	public String getNecesidades() {
-		return this.necesidades;
-	}
-
-	public void setNecesidades(String necesidades) {
-		this.necesidades = necesidades;
 	}
 
 	public Set getNecesidads() {

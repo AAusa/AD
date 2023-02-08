@@ -17,34 +17,30 @@ public class Voluntario implements java.io.Serializable {
 	private int edad;
 	private String sexo;
 	private String estadoCivil;
-	private String necesidades;
 	private String disponibilidad;
 	private Set necesidads = new HashSet(0);
 
 	public Voluntario() {
 	}
 
-	public Voluntario(int id, String nombre, String apellido, int edad, String sexo, String estadoCivil,
-			String necesidades, String disponibilidad) {
+	public Voluntario(int id, String nombre, String apellido, int edad, String sexo, String estadoCivil, String disponibilidad) {
 		this.id = id;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.edad = edad;
 		this.sexo = sexo;
 		this.estadoCivil = estadoCivil;
-		this.necesidades = necesidades;
 		this.disponibilidad = disponibilidad;
 	}
 
 	public Voluntario(int id, String nombre, String apellido, int edad, String sexo, String estadoCivil,
-			String necesidades, String disponibilidad, Set necesidads) {
+			String disponibilidad, Set necesidads) {
 		this.id = id;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.edad = edad;
 		this.sexo = sexo;
 		this.estadoCivil = estadoCivil;
-		this.necesidades = necesidades;
 		this.disponibilidad = disponibilidad;
 		this.necesidads = necesidads;
 	}
@@ -95,14 +91,6 @@ public class Voluntario implements java.io.Serializable {
 
 	public void setEstadoCivil(String estadoCivil) {
 		this.estadoCivil = estadoCivil;
-	}
-
-	public String getNecesidades() {
-		return this.necesidades;
-	}
-
-	public void setNecesidades(String necesidades) {
-		this.necesidades = necesidades;
 	}
 
 	public String getDisponibilidad() {
