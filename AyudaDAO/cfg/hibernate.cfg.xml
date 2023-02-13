@@ -11,8 +11,8 @@
         <property name="hibernate.hbm2ddl.auto">none</property>
         <property name="hibernate.search.autoregister_listeners">true</property>
         <property name="hibernate.validator.apply_to_ddl">false</property>
-        <mapping resource="Necesidad.hbm.xml"/>
-        <mapping resource="Necesitado.hbm.xml"/>
         <mapping resource="Voluntario.hbm.xml"/>
+        <mapping resource="Necesitado.hbm.xml"/>
+        <mapping resource="Necesidad.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>

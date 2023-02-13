@@ -1,7 +1,5 @@
 package com.modelo;
-
-// default package
-// Generated 6 feb 2023 11:51:31 by Hibernate Tools 5.6.12.Final
+// Generated 13 feb 2023 11:00:08 by Hibernate Tools 5.6.12.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -23,7 +21,8 @@ public class Voluntario implements java.io.Serializable {
 	public Voluntario() {
 	}
 
-	public Voluntario(int id, String nombre, String apellido, int edad, String sexo, String estadoCivil, String disponibilidad) {
+	public Voluntario(int id, String nombre, String apellido, int edad, String sexo, String estadoCivil,
+			String disponibilidad) {
 		this.id = id;
 		this.nombre = nombre;
 		this.apellido = apellido;

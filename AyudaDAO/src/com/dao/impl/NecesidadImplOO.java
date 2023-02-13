@@ -9,7 +9,6 @@ import org.neodatis.odb.impl.core.query.criteria.CriteriaQuery;
 
 import com.dao.NecesidadDAO;
 import com.modelo.Necesidad;
-import com.modelo.NecesidadId;
 import com.modelo.Voluntario;
 
 public class NecesidadImplOO implements NecesidadDAO {
@@ -32,7 +31,7 @@ public class NecesidadImplOO implements NecesidadDAO {
 	}
 
 	@Override
-	public boolean elimina(NecesidadId id) {
+	public boolean elimina(Integer id) {
 		boolean valor =false;
 		IQuery query = new CriteriaQuery(Necesidad.class, Where.equal("id", id));
 		Objects<Necesidad> objetos = db.getObjects(query);
@@ -50,7 +49,7 @@ public class NecesidadImplOO implements NecesidadDAO {
 	}
 
 	@Override
-	public boolean modifica(NecesidadId id, Necesidad elemento) {
+	public boolean modifica(Integer id, Necesidad elemento) {
 		boolean valor =false;
 		IQuery query = new CriteriaQuery(Necesidad.class, Where.equal("id", id));
 		Objects<Necesidad> objetos = db.getObjects(query);
@@ -72,7 +71,7 @@ public class NecesidadImplOO implements NecesidadDAO {
 	}
 
 	@Override
-	public Necesidad consulta(NecesidadId id) {
+	public Necesidad consulta(Integer id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
