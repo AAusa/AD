@@ -7,19 +7,19 @@ public class NecesidadImplXML implements NecesidadDAO {
 
 	@Override
 	public boolean inserta(Necesidad elemento) {
-		// TODO Auto-generated method stub
+		System.out.println("Aquí se realizaría la operación");
 		return false;
 	}
 
 	@Override
 	public boolean elimina(Integer id) {
-		// TODO Auto-generated method stub
+		System.out.println("Aquí se realizaría la operación");
 		return false;
 	}
 
 	@Override
 	public boolean modifica(Integer id, Necesidad elemento) {
-		// TODO Auto-generated method stub
+		System.out.println("Aquí se realizaría la operación");
 		return false;
 	}
 

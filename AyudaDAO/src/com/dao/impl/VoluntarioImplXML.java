@@ -10,19 +10,19 @@ public class VoluntarioImplXML implements VoluntarioDAO {
 
 	@Override
 	public boolean inserta(Voluntario elemento) {
-		// TODO Auto-generated method stub
+		System.out.println("Aquí se realizaría la operación");
 		return false;
 	}
 
 	@Override
 	public boolean elimina(Integer id) {
-		// TODO Auto-generated method stub
+		System.out.println("Aquí se realizaría la operación");
 		return false;
 	}
 
 	@Override
 	public boolean modifica(Integer id, Voluntario elemento) {
-		// TODO Auto-generated method stub
+		System.out.println("Aquí se realizaría la operación");
 		return false;
 	}
 

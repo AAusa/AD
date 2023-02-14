@@ -22,16 +22,42 @@ public class Nuevo {
 
 		// ------------------UTILIZAMOS LO DEFINIDO ANTES-------------
 		//obtener la f�brica de la conexi�n actual para crear una sesi�n
-		SessionFactory fabrica = com.controlador.HibernateUtil.getSessionFactory();
+		//SessionFactory fabrica = com.controlador.HibernateUtil.getSessionFactory();
 		//------------------------------------------------------------
 		// creamos la sesi�n
-		Session sesion = fabrica.openSession();	
+		//Session sesion = fabrica.openSession();	
 		// creamos la transacci�n de la sesi�n
-		Transaction tx = sesion.beginTransaction();
-		Voluntario vol = new Voluntario(3, "nombre", "Apellido", 19, "Masculino", "Soltero", "Mañana");
-		Voluntario vol2 = new Voluntario(2, "nombre2", "Apellido", 19, "Masculino", "Soltero", "Mañana");
+		//Transaction tx = sesion.beginTransaction();
+		
+		Voluntario vol1 = new Voluntario(1, "Juan", "Garcia", 31, "Masculino", "Soltero", "Mañana");
+		Voluntario vol2 = new Voluntario(2, "Pepa", "Garrote", 64, "Femenino", "Casada", "Tarde");
+		Voluntario vol3 = new Voluntario(3, "Jimena", "Valero", 43, "Femenino", "Casada", "Noche");
+		
 		VoluntarioControlador vc = new VoluntarioControlador("mysql");
-		vc.inserta(vol);
+		/*
+		vc.inserta(vol1);
+		vc.inserta(vol2);
+		vc.inserta(vol3);
+		*/
+		//vc.modifica(vol2.getId(), vol2);
+		
+		Necesitado nec1 = new Necesitado(1, "Alvaro", "Perez", 19, "Masculino", "Soltero");
+		Necesitado nec2 = new Necesitado(2, "Francisca", "Legarre", 76, "Femenino", "Casada");
+		Necesitado nec3 = new Necesitado(3, "Eustaquio", "Ferrer", 54, "Masculino", "Casado");
+		NecesitadoControlador nc = new NecesitadoControlador("mysql");
+		//nc.elimina(nec2.getId());
+		//nc.inserta(nec1);
+		//nc.inserta(nec2);
+		//nc.inserta(nec3);
+		Necesidad nece1 = new Necesidad(1, nec1, vol1, "Transporte", "Mañana");
+		Necesidad nece2 = new Necesidad(2, nec2, vol2, "Comida", "Tarde");
+		Necesidad nece3 = new Necesidad(3, nec3, vol3, "Limpieza", "Noche");
+
+		NecesidadControlador necec = new NecesidadControlador("mysql");
+		//necec.inserta(nece1);
+		necec.inserta(nece2);
+		necec.inserta(nece3);
+		//necec.modifica(nece.getId(), nece2);
 		/*
 		 * PRUEBAS OO:
 		
@@ -60,17 +86,12 @@ public class Nuevo {
 		necec.modifica(nece.getId(), nece2);
 		necec.elimina(nece2.getId());
 		*/
-		sesion.save(vol);
+		
 		
 
 		System.out.println("FUNCIONO!!");
 		
-		//tx.commit();
-		
-		
-		
-		sesion.close();
-		fabrica.close();
+
 		System.exit(0);	
 		
 	}

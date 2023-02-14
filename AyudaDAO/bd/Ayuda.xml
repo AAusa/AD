@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    - Base de datos: 'Ayuda'
+    -->
+<database name="Ayuda">
+    <!-- Tabla Necesidad -->
+    <table name="Necesidad">
+        <column name="IdVoluntario">1</column>
+        <column name="IdNecesitado">1</column>
+        <column name="Nombre">Transporte</column>
+        <column name="Disponibilidad">Mañana</column>
+        <column name="id">1</column>
+    </table>
+    <table name="Necesidad">
+        <column name="IdVoluntario">2</column>
+        <column name="IdNecesitado">2</column>
+        <column name="Nombre">Comida</column>
+        <column name="Disponibilidad">Tarde</column>
+        <column name="id">2</column>
+    </table>
+    <table name="Necesidad">
+        <column name="IdVoluntario">3</column>
+        <column name="IdNecesitado">3</column>
+        <column name="Nombre">Limpieza</column>
+        <column name="Disponibilidad">Noche</column>
+        <column name="id">3</column>
+    </table>
+    <!-- Tabla Necesitado -->
+    <table name="Necesitado">
+        <column name="Id">1</column>
+        <column name="Nombre">Alvaro</column>
+        <column name="Apellido">Perez</column>
+        <column name="Edad">19</column>
+        <column name="Sexo">Masculino</column>
+        <column name="EstadoCivil">Soltero</column>
+    </table>
+    <table name="Necesitado">
+        <column name="Id">2</column>
+        <column name="Nombre">Francisca</column>
+        <column name="Apellido">Legarre</column>
+        <column name="Edad">76</column>
+        <column name="Sexo">Femenino</column>
+        <column name="EstadoCivil">Casada</column>
+    </table>
+    <table name="Necesitado">
+        <column name="Id">3</column>
+        <column name="Nombre">Eustaquio</column>
+        <column name="Apellido">Ferrer</column>
+        <column name="Edad">54</column>
+        <column name="Sexo">Masculino</column>
+        <column name="EstadoCivil">Casado</column>
+    </table>
+    <!-- Tabla Voluntario -->
+    <table name="Voluntario">
+        <column name="Id">1</column>
+        <column name="Nombre">Juan</column>
+        <column name="Apellido">Garcia</column>
+        <column name="Edad">31</column>
+        <column name="Sexo">Masculino</column>
+        <column name="EstadoCivil">Soltero</column>
+        <column name="Disponibilidad">Mañana</column>
+    </table>
+    <table name="Voluntario">
+        <column name="Id">2</column>
+        <column name="Nombre">Pepa</column>
+        <column name="Apellido">Garrote</column>
+        <column name="Edad">64</column>
+        <column name="Sexo">Femenino</column>
+        <column name="EstadoCivil">Casada</column>
+        <column name="Disponibilidad">Tarde</column>
+    </table>
+    <table name="Voluntario">
+        <column name="Id">3</column>
+        <column name="Nombre">Jimena</column>
+        <column name="Apellido">Valero</column>
+        <column name="Edad">43</column>
+        <column name="Sexo">Femenino</column>
+        <column name="EstadoCivil">Casada</column>
+        <column name="Disponibilidad">Noche</column>
+    </table>
+</database>
