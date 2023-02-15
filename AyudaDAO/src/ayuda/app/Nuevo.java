@@ -3,7 +3,6 @@ package ayuda.app;
 import java.util.Iterator;
 import java.util.List;
 
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -34,6 +33,14 @@ public class Nuevo {
 		Voluntario vol3 = new Voluntario(3, "Jimena", "Valero", 43, "Femenino", "Casada", "Noche");
 		
 		VoluntarioControlador vc = new VoluntarioControlador("mysql");
+		vc.consulta(vol1.getId());
+		List<Object> nombres = (List<Object>) vc.consulta(vol1.getId());
+		Iterator <Object> iter = nombres.iterator();
+		while (iter.hasNext()){
+			Object varioscampos = (Object)iter.next();
+			Object[] resultadosString = (Object[])varioscampos;
+			System.out.println("Nombre = "+(String)resultadosString[0]+"Apellido = "+(String)resultadosString[1]+" Necesidad="+(String)resultadosString[2]);
+		}
 		/*
 		vc.inserta(vol1);
 		vc.inserta(vol2);
@@ -45,6 +52,7 @@ public class Nuevo {
 		Necesitado nec2 = new Necesitado(2, "Francisca", "Legarre", 76, "Femenino", "Casada");
 		Necesitado nec3 = new Necesitado(3, "Eustaquio", "Ferrer", 54, "Masculino", "Casado");
 		NecesitadoControlador nc = new NecesitadoControlador("mysql");
+		
 		//nc.elimina(nec2.getId());
 		//nc.inserta(nec1);
 		//nc.inserta(nec2);
@@ -55,8 +63,8 @@ public class Nuevo {
 
 		NecesidadControlador necec = new NecesidadControlador("mysql");
 		//necec.inserta(nece1);
-		necec.inserta(nece2);
-		necec.inserta(nece3);
+		//necec.inserta(nece2);
+		//necec.inserta(nece3);
 		//necec.modifica(nece.getId(), nece2);
 		/*
 		 * PRUEBAS OO:
@@ -98,9 +106,9 @@ public class Nuevo {
 
 	private static int proximo_id(Session sesion) {
 		Query<Integer> q = sesion.createQuery("select max(codigo) from Libro");
-		
+
 		Integer res = q.getSingleResult();
-		return res.intValue()+1;
+		return res.intValue() + 1;
 	}
 
 }
