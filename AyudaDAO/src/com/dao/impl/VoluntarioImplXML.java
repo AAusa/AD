@@ -27,7 +27,7 @@ public class VoluntarioImplXML implements VoluntarioDAO {
 	}
 
 	@Override
-	public Voluntario consulta(Integer id) {
+	public String consulta(Integer id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

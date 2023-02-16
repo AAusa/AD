@@ -71,7 +71,7 @@ public class NecesidadImplOO implements NecesidadDAO {
 	}
 
 	@Override
-	public Necesidad consulta(Integer id) {
+	public String consulta(Integer id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

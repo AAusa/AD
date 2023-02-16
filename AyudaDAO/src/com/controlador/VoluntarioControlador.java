@@ -40,9 +40,9 @@ public class VoluntarioControlador implements VoluntarioDAO {
 	}
 
 	@Override
-	public Voluntario consulta(Integer id) {
-		voluntario.consulta(id);
-		return null;
+	public String consulta(Integer id) {
+		
+		return voluntario.consulta(id);
 	}
 
 

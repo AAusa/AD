@@ -59,21 +59,45 @@ public class VoluntarioImplMySQL implements VoluntarioDAO {
 		tx.commit();
 		return false;
 	}
-
+	
 	@Override
-	public Voluntario consulta(Integer id) {
+	public String consulta(Integer id) {
+		return consulta1(id)+consulta2(id);
+	}
+	
+	public String consulta1(Integer id) {
+		String resultado = "Nombre, apellido y necesidad de los voluntarios cuya disponibilidad es la tarde:\n";
 		List<Object> listaNombres = new ArrayList<Object>();
 		String queryTexto = "SELECT v.nombre, v.apellido, n.nombre FROM Voluntario as v INNER JOIN Necesidad as n ON v.id = n.voluntario.id WHERE v.disponibilidad LIKE 'Tarde'";
-		
 		Query query = sesion.createQuery(queryTexto);
 		List<Object> lista = query.getResultList();
 		Iterator<Object> iter = lista.iterator();
 		while (iter.hasNext()) {
 			Object objeto = (Object) iter.next();
+			Object[] resultadosString = (Object[])objeto;
+			resultado += "\tNombre = "+(String)resultadosString[0]+"\tApellido = "+(String)resultadosString[1]+"\tNecesidad="+(String)resultadosString[2]+"\n";
 			listaNombres.add(objeto);
 		}
-		return listaNombres;
+		return resultado;
 	}
+	
+	public String consulta2(Integer id) {
+		String resultado = "Nombre, apellido y necesidad de los voluntarios cuya edad es mayor de 40 años:\n";
+		List<Object> listaNombres = new ArrayList<Object>();
+		String queryTexto = "SELECT v.nombre, v.apellido, n.nombre FROM Voluntario as v INNER JOIN Necesidad as n ON v.id = n.voluntario.id WHERE v.edad > 40";
+		Query query = sesion.createQuery(queryTexto);
+		List<Object> lista = query.getResultList();
+		Iterator<Object> iter = lista.iterator();
+		while (iter.hasNext()) {
+			Object objeto = (Object) iter.next();
+			Object[] resultadosString = (Object[])objeto;
+			resultado += "\tNombre = "+(String)resultadosString[0]+"\tApellido = "+(String)resultadosString[1]+"\tNecesidad="+(String)resultadosString[2]+"\n";
+			listaNombres.add(objeto);
+		}
+		return resultado;
+	}
+	
+	
 	
 
 }

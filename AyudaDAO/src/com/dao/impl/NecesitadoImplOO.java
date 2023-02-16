@@ -72,7 +72,7 @@ public class NecesitadoImplOO implements NecesitadoDAO {
 	}
 
 	@Override
-	public Necesitado consulta(Integer id) {
+	public String consulta(Integer id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -37,7 +37,7 @@ public class NecesitadoControlador implements NecesitadoDAO {
 	}
 
 	@Override
-	public Necesitado consulta(Integer id) {
+	public String consulta(Integer id) {
 		necesitado.consulta(id);
 		return null;
 	}

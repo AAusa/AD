@@ -35,9 +35,8 @@ public class NecesidadControlador implements NecesidadDAO {
 		return false;
 	}
 	@Override
-	public Necesidad consulta(Integer id) {
-		necesidad.consulta(id);
-		return null;
+	public String consulta(Integer id) {
+		return necesidad.consulta(id);
 	}
 
 }

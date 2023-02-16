@@ -1,4 +1,5 @@
 Voluntarios disponibles para ayudar por la mañana:
 SELECT Voluntario.Nombre, Voluntario.Apellido, Necesidad.Nombre as Necesidad FROM Voluntario LEFT JOIN Necesidad ON Voluntario.id = Necesidad.IdVoluntario WHERE Voluntario.Disponibilidad = "Mañana"
+
 Necesitados de comida por la tarde:
 SELECT Necesitado.Nombre, Necesitado.Apellido, Necesidad.Nombre as Necesidad, Necesidad.Disponibilidad FROM Necesitado LEFT JOIN Necesidad ON Necesitado.id = Necesidad.IdNecesitado WHERE Necesidad.Nombre = "Comida" and Necesidad.Disponibilidad = "Tarde"

@@ -53,7 +53,7 @@ public class NecesidadImplMySQL implements NecesidadDAO {
 	}
 
 	@Override
-	public Necesidad consulta(Integer id) {
+	public String consulta(Integer id) {
 		return null;
 	}
 
