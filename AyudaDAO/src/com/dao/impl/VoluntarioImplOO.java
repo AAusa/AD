@@ -1,11 +1,14 @@
 package com.dao.impl;
 
 import java.io.Serializable;
+import java.util.Iterator;
 
 import org.neodatis.odb.ODB;
 import org.neodatis.odb.ODBFactory;
 import org.neodatis.odb.Objects;
 import org.neodatis.odb.core.query.IQuery;
+import org.neodatis.odb.core.query.criteria.And;
+import org.neodatis.odb.core.query.criteria.ICriterion;
 import org.neodatis.odb.core.query.criteria.Where;
 import org.neodatis.odb.impl.core.query.criteria.CriteriaQuery;
 
@@ -14,14 +17,14 @@ import com.modelo.Voluntario;
 
 
 public class VoluntarioImplOO implements VoluntarioDAO {
-	private static ODB db;
+	private ODB db;
 
 	
 	public VoluntarioImplOO() {
-		db = ODBFactory.open("bd//VoluntarioOO.db");
+		db = ODBFactory.open("bd/VoluntarioOO.db");
 	}
 	
-	public static ODB crearConexion() {
+	public ODB crearConexion() {
 		return db;
 	}
 
@@ -78,7 +81,27 @@ public class VoluntarioImplOO implements VoluntarioDAO {
 	@Override
 	public String consulta(Integer id) {
 		// TODO Auto-generated method stub
-		return null;
+		return consulta1(id);
+	}
+	
+	public String consulta1(Integer id) {
+		String resultado = "Nombre y apellido de los voluntarios disponibles para ayudar por la mañana mayores de 18 años ordenados por nombre y apellidos de forma descendente:\n";
+		//ODB odb = ODBFactory.open("VoluntarioOO.db");
+		/*
+		ICriterion criterio = new And()
+				.add(Where.equal("disponibilidad", "Mañana"))
+				.add(Where.gt("edad", 18));
+				*/
+		IQuery query = new CriteriaQuery(Voluntario.class,Where.equal("disponibilidad", "Mañana"));
+		//query.orderByAsc("nombre, apellido");
+		Objects <Voluntario> voluntarios = this.db.getObjects(query);
+		System.out.println(voluntarios.size() + " voluntarios");
+		Iterator<Voluntario> iter = voluntarios.iterator();
+		while (iter.hasNext()) {
+			Voluntario v = iter.next();
+			resultado += "Nombre: "+v.getNombre()+"\tApellido:"+v.getApellido();
+		}
+		return resultado;
 	}
 
 	

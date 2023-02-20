@@ -34,6 +34,8 @@ public class Nuevo {
 		
 		VoluntarioControlador vc = new VoluntarioControlador("mysql");
 		//System.out.println(vc.consulta(vol1.getId()));
+
+		//System.out.println(vc.consulta(vol1.getId()));
 		
 
 		/*
@@ -47,8 +49,7 @@ public class Nuevo {
 		Necesitado nec2 = new Necesitado(2, "Francisca", "Legarre", 76, "Femenino", "Casada");
 		Necesitado nec3 = new Necesitado(3, "Eustaquio", "Ferrer", 54, "Masculino", "Casado");
 		NecesitadoControlador nc = new NecesitadoControlador("mysql");
-		System.out.println(nc.consulta(nec1.getId()));
-
+		//System.out.println(nc.consulta(nec1.getId()));
 		//nc.elimina(nec2.getId());
 		//nc.inserta(nec1);
 		//nc.inserta(nec2);
