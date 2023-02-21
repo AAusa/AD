@@ -32,7 +32,13 @@ public class Nuevo {
 		Voluntario vol2 = new Voluntario(2, "Pepa", "Garrote", 64, "Femenino", "Casada", "Tarde");
 		Voluntario vol3 = new Voluntario(3, "Jimena", "Valero", 43, "Femenino", "Casada", "Noche");
 		
-		VoluntarioControlador vc = new VoluntarioControlador("mysql");
+		VoluntarioControlador vc = new VoluntarioControlador("xml");
+		System.out.println(vc.consulta(1));
+		
+		//vc.inserta(vol1);
+		//vc.inserta(vol2);
+		//vc.inserta(vol3);
+		//System.out.println(vc.consulta(1));
 		//System.out.println(vc.consulta(vol1.getId()));
 
 		//System.out.println(vc.consulta(vol1.getId()));
@@ -48,8 +54,8 @@ public class Nuevo {
 		Necesitado nec1 = new Necesitado(1, "Alvaro", "Perez", 19, "Masculino", "Soltero");
 		Necesitado nec2 = new Necesitado(2, "Francisca", "Legarre", 76, "Femenino", "Casada");
 		Necesitado nec3 = new Necesitado(3, "Eustaquio", "Ferrer", 54, "Masculino", "Casado");
-		NecesitadoControlador nc = new NecesitadoControlador("mysql");
-		//System.out.println(nc.consulta(nec1.getId()));
+		NecesitadoControlador nc = new NecesitadoControlador("xml");
+		System.out.println(nc.consulta(nec1.getId()));
 		//nc.elimina(nec2.getId());
 		//nc.inserta(nec1);
 		//nc.inserta(nec2);
@@ -58,7 +64,9 @@ public class Nuevo {
 		Necesidad nece2 = new Necesidad(2, nec2, vol2, "Comida", "Tarde");
 		Necesidad nece3 = new Necesidad(3, nec3, vol3, "Limpieza", "Noche");
 
-		NecesidadControlador necec = new NecesidadControlador("mysql");
+		NecesidadControlador necec = new NecesidadControlador("xml");
+		System.out.println(necec.consulta(nece1.getId()));
+
 		//necec.inserta(nece1);
 		//necec.inserta(nece2);
 		//necec.inserta(nece3);

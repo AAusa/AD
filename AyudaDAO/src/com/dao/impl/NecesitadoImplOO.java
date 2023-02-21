@@ -15,7 +15,7 @@ public class NecesitadoImplOO implements NecesitadoDAO {
 	private static ODB db;
 	
 	public NecesitadoImplOO() {
-		db = ODBFactory.open("bd//NecesitadoOO.db");
+		db = ODBFactory.open("bd/AyudaOO.db");
 	}
 	
 	public static ODB crearConexion() {

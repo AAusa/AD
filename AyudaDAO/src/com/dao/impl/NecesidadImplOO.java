@@ -16,7 +16,7 @@ public class NecesidadImplOO implements NecesidadDAO {
 
 	
 	public NecesidadImplOO() {
-		db = ODBFactory.open("bd//NecesidadOO.db");
+		db = ODBFactory.open("bd/AyudaOO.db");
 	}
 	
 	public static ODB crearConexion() {

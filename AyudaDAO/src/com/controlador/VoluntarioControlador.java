@@ -44,6 +44,9 @@ public class VoluntarioControlador implements VoluntarioDAO {
 		
 		return voluntario.consulta(id);
 	}
-
+	
+	public void cerrarConexion() {
+		//voluntario.cerrarConexion();
+	}
 
 }

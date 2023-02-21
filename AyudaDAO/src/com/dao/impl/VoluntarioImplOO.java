@@ -21,7 +21,7 @@ public class VoluntarioImplOO implements VoluntarioDAO {
 
 	
 	public VoluntarioImplOO() {
-		db = ODBFactory.open("bd/VoluntarioOO.db");
+		db = ODBFactory.open("bd/AyudaOO.db");
 	}
 	
 	public ODB crearConexion() {
@@ -32,6 +32,7 @@ public class VoluntarioImplOO implements VoluntarioDAO {
 	public boolean inserta(Voluntario elemento) {
 		db.store(elemento);
 		db.commit();
+		db.close();
 		System.out.println("Voluntario insertado");
 		return true;
 	}
@@ -102,6 +103,10 @@ public class VoluntarioImplOO implements VoluntarioDAO {
 			resultado += "Nombre: "+v.getNombre()+"\tApellido:"+v.getApellido();
 		}
 		return resultado;
+	}
+	
+	public void cerrarConexion() {
+		db.close();
 	}
 
 	
