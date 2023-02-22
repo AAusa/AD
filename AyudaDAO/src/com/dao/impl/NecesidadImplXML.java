@@ -59,13 +59,13 @@ public class NecesidadImplXML implements NecesidadDAO {
 	}
 
 	@Override
-	public boolean modifica(Integer id, Necesidad elemento) {
+	public boolean modifica(Necesidad elemento) {
 		System.out.println("Aquí se realizaría la operación");
 		return false;
 	}
 
 	@Override
-	public String consulta(Integer id) {
+	public String consulta() {
 		// TODO Auto-generated method stub
 		return consulta1()+consulta2();
 	}

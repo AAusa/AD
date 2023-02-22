@@ -13,7 +13,7 @@ public class VoluntarioControlador implements VoluntarioDAO {
 	
 	public VoluntarioControlador (String tipoDeBD) {
 		if (tipoDeBD.equalsIgnoreCase("OO") ) {
-			voluntario = new VoluntarioImplOO();
+			voluntario = new VoluntarioImplOO(NeodatisUtils.buildODBConection("bd/AyudaOO.db"));
 		} else if (tipoDeBD.equalsIgnoreCase("mysql") ) {
 			voluntario = new VoluntarioImplMySQL();
 		} else if (tipoDeBD.equalsIgnoreCase("xml") ) {
@@ -34,15 +34,15 @@ public class VoluntarioControlador implements VoluntarioDAO {
 	}
 
 	@Override
-	public boolean modifica(Integer id, Voluntario elemento) {
-		voluntario.modifica(id, elemento);
+	public boolean modifica(Voluntario elemento) {
+		voluntario.modifica(elemento);
 		return false;
 	}
 
 	@Override
-	public String consulta(Integer id) {
+	public String consulta() {
 		
-		return voluntario.consulta(id);
+		return voluntario.consulta();
 	}
 	
 	public void cerrarConexion() {

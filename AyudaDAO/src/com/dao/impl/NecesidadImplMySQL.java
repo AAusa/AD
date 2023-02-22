@@ -44,20 +44,25 @@ public class NecesidadImplMySQL implements NecesidadDAO {
 	}
 
 	@Override
-	public boolean modifica(Integer id, Necesidad elemento) {
+	public boolean modifica(Necesidad elemento) {
 		Transaction tx = sesion.beginTransaction();
-		// Voluntario v = (Voluntario)sesion.get(Voluntario.class, id);
-		sesion.update(elemento);
+		Necesidad n = (Necesidad)sesion.get(Necesidad.class, elemento.getId());
+		n.setId(elemento.getId());
+		n.setDisponibilidad(elemento.getDisponibilidad());
+		n.setNecesitado(elemento.getNecesitado());
+		n.setNombre(elemento.getNombre());
+		n.setVoluntario(elemento.getVoluntario());		
+		sesion.update(n);
 		tx.commit();
 		return false;
 	}
 
 	@Override
-	public String consulta(Integer id) {
-		return consulta1(id)+consulta2(id);
+	public String consulta() {
+		return consulta1()+consulta2();
 	}
 	
-	public String consulta1(Integer id) {
+	public String consulta1() {
 		String resultado = "Nombre y apellido del voluntario correspondiente a la necesidad limpieza:\n";
 		List<Object> listaNombres = new ArrayList<Object>();
 		String queryTexto = "SELECT v.nombre, v.apellido, n.nombre FROM Necesidad as n INNER JOIN Voluntario as v ON v.id = n.voluntario.id WHERE n.nombre LIKE 'Limpieza'";
@@ -73,7 +78,7 @@ public class NecesidadImplMySQL implements NecesidadDAO {
 		return resultado;
 	}
 	
-	public String consulta2(Integer id) {
+	public String consulta2() {
 		String resultado = "\nNombre y apellido del necesitado correspondiente a la necesidad a realizar por la tarde:\n";
 		List<Object> listaNombres = new ArrayList<Object>();
 		String queryTexto = "SELECT necesitado.nombre, necesitado.apellido, necesidad.disponibilidad FROM Necesidad as necesidad INNER JOIN Necesitado as necesitado ON necesitado.id = necesidad.necesitado.id WHERE necesidad.disponibilidad LIKE 'Tarde'";

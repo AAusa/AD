@@ -64,13 +64,13 @@ private static XPathQueryService servicio = null;
 	}
 
 	@Override
-	public boolean modifica(Integer id, Necesitado elemento) {
+	public boolean modifica(Necesitado elemento) {
 		System.out.println("Aquí se realizaría la operación");
 		return false;
 	}
 
 	@Override
-	public String consulta(Integer id) {
+	public String consulta() {
 		// TODO Auto-generated method stub
 		return consulta1()+consulta2();
 	}

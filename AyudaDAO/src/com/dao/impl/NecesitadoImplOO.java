@@ -1,9 +1,13 @@
 package com.dao.impl;
 
+import java.util.Iterator;
+
 import org.neodatis.odb.ODB;
 import org.neodatis.odb.ODBFactory;
 import org.neodatis.odb.Objects;
 import org.neodatis.odb.core.query.IQuery;
+import org.neodatis.odb.core.query.criteria.ICriterion;
+import org.neodatis.odb.core.query.criteria.Or;
 import org.neodatis.odb.core.query.criteria.Where;
 import org.neodatis.odb.impl.core.query.criteria.CriteriaQuery;
 
@@ -14,8 +18,9 @@ import com.modelo.Voluntario;
 public class NecesitadoImplOO implements NecesitadoDAO {
 	private static ODB db;
 	
-	public NecesitadoImplOO() {
-		db = ODBFactory.open("bd/AyudaOO.db");
+	
+	public NecesitadoImplOO(ODB bd) {
+		this.db = bd;
 	}
 	
 	public static ODB crearConexion() {
@@ -49,9 +54,9 @@ public class NecesitadoImplOO implements NecesitadoDAO {
 	}
 
 	@Override
-	public boolean modifica(Integer id, Necesitado elemento) {
+	public boolean modifica(Necesitado elemento) {
 		boolean valor =false;
-		IQuery query = new CriteriaQuery(Necesitado.class, Where.equal("id", id));
+		IQuery query = new CriteriaQuery(Necesitado.class, Where.equal("id", elemento.getId()));
 		Objects<Necesitado> objetos = db.getObjects(query);
 		try {
 			Necesitado necesitado = (Necesitado) objetos.getFirst();
@@ -72,9 +77,30 @@ public class NecesitadoImplOO implements NecesitadoDAO {
 	}
 
 	@Override
-	public String consulta(Integer id) {
+	public String consulta() {
 		// TODO Auto-generated method stub
-		return null;
+		return consulta1();
+	}
+	
+	public String consulta1() {
+		String resultado = "Nombre y apellido de los necesitados sean hombre o mujer que estan casados ordenados por apellido de forma ascendente:\n";
+		//ODB odb = ODBFactory.open("VoluntarioOO.db");
+		
+		ICriterion criterio = new Or()
+				.add(Where.equal("estadoCivil", "Casado"))
+				.add(Where.equal("estadoCivil", "Casada"));
+			
+		IQuery query = new CriteriaQuery(Necesitado.class, criterio);
+		//IQuery query = new CriteriaQuery(Voluntario.class,Where.equal("disponibilidad", "Mañana"));
+		query.orderByAsc("apellido");
+		Objects <Necesitado> necesitados = this.db.getObjects(query);
+		System.out.println(necesitados.size() + " necesitados");
+		Iterator<Necesitado> iter = necesitados.iterator();
+		while (iter.hasNext()) {
+			Necesitado n = iter.next();
+			resultado += "Nombre: "+n.getNombre()+"\tApellido:"+n.getApellido()+"\n";
+		}
+		return resultado;
 	}
 
 }

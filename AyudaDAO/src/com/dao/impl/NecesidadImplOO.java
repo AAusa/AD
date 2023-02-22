@@ -1,9 +1,14 @@
 package com.dao.impl;
 
+import java.util.Iterator;
+
 import org.neodatis.odb.ODB;
 import org.neodatis.odb.ODBFactory;
 import org.neodatis.odb.Objects;
 import org.neodatis.odb.core.query.IQuery;
+import org.neodatis.odb.core.query.criteria.And;
+import org.neodatis.odb.core.query.criteria.ICriterion;
+import org.neodatis.odb.core.query.criteria.Or;
 import org.neodatis.odb.core.query.criteria.Where;
 import org.neodatis.odb.impl.core.query.criteria.CriteriaQuery;
 
@@ -14,9 +19,8 @@ import com.modelo.Voluntario;
 public class NecesidadImplOO implements NecesidadDAO {
 	private static ODB db;
 
-	
-	public NecesidadImplOO() {
-		db = ODBFactory.open("bd/AyudaOO.db");
+	public NecesidadImplOO(ODB bd) {
+		this.db = bd;
 	}
 	
 	public static ODB crearConexion() {
@@ -49,9 +53,9 @@ public class NecesidadImplOO implements NecesidadDAO {
 	}
 
 	@Override
-	public boolean modifica(Integer id, Necesidad elemento) {
+	public boolean modifica(Necesidad elemento) {
 		boolean valor =false;
-		IQuery query = new CriteriaQuery(Necesidad.class, Where.equal("id", id));
+		IQuery query = new CriteriaQuery(Necesidad.class, Where.equal("id", elemento.getId()));
 		Objects<Necesidad> objetos = db.getObjects(query);
 		try {
 			Necesidad necesidad = (Necesidad) objetos.getFirst();
@@ -71,9 +75,10 @@ public class NecesidadImplOO implements NecesidadDAO {
 	}
 
 	@Override
-	public String consulta(Integer id) {
+	public String consulta() {
 		// TODO Auto-generated method stub
-		return null;
+		return "En esta BD hay consultas en las tablas: Voluntario y Necesitado";
 	}
+	
 
 }

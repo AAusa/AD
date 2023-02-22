@@ -2,13 +2,20 @@ package ayuda.app;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
 import org.hibernate.Session;
 import org.hibernate.query.Query;
+import org.neodatis.odb.ODB;
+import org.neodatis.odb.Objects;
 
 import com.controlador.NecesidadControlador;
 import com.controlador.NecesitadoControlador;
 import com.controlador.VoluntarioControlador;
+import com.dao.impl.NecesidadImplMySQL;
+import com.dao.impl.NecesidadImplOO;
+import com.dao.impl.NecesitadoImplMySQL;
+import com.dao.impl.NecesitadoImplOO;
+import com.dao.impl.VoluntarioImplMySQL;
+import com.dao.impl.VoluntarioImplOO;
 import com.modelo.Necesidad;
 import com.modelo.Necesitado;
 import com.modelo.Voluntario;
@@ -23,15 +30,14 @@ public class App {
 		Voluntario v = null;
 		Necesitado n = null;
 		Necesidad n2 = null;
-
 		int id = 0;
-		do{
-			System.out.println("Indica la BD con la que deseas trabajar:");
-			System.out.println("\t1) MySQL (Hibernate)");
-			System.out.println("\t2) OO (Neodatis)");
-			System.out.println("\t3) XML (ExistDB)");
-			System.out.println("\t4) Salir");
+		do {
 			try {
+				System.out.println("Indica la BD con la que deseas trabajar:");
+				System.out.println("\t1) MySQL (Hibernate)");
+				System.out.println("\t2) OO (Neodatis)");
+				System.out.println("\t3) XML (ExistDB)");
+				System.out.println("\t4) Salir");
 				opcionBD = Utilidades.pedirEntero("Escribe una de las opciones:");
 				switch (opcionBD) {
 				case 1:
@@ -45,7 +51,7 @@ public class App {
 					break;
 				case 4:
 					salir = true;
-					break;
+					return;
 				default:
 					System.out.println("Solo numeros entre 1 y 4");
 				}
@@ -55,10 +61,13 @@ public class App {
 				System.out.println("\t3) Modificar");
 				System.out.println("\t4) Consultar");
 				System.out.println("\t5) Salir");
-				
+
 				opcionCRUD = Utilidades.pedirEntero("Escribe una de las opciones:");
-				if(opcionCRUD == 5) salir = true;
-				
+				if (opcionCRUD == 5) {
+					salir = true;
+					return;
+				}
+
 				System.out.println("Indica la tabla con la que deseas trabajar:");
 				System.out.println("\t1) Voluntario");
 				System.out.println("\t2) Necesitado");
@@ -70,7 +79,7 @@ public class App {
 					VoluntarioControlador vc = new VoluntarioControlador(BD);
 					switch (opcionCRUD) {
 					case 1:
-						v = app.getVoluntario(opcionBD);
+						v = app.getVoluntario(opcionBD, opcionTabla, false);
 						vc.inserta(v);
 						break;
 					case 2:
@@ -78,15 +87,15 @@ public class App {
 						vc.elimina(id);
 						break;
 					case 3:
-						v = app.getVoluntario(opcionBD);
-						vc.modifica(null, v);
+						v = app.getVoluntario(opcionBD, opcionTabla, true);
+						vc.modifica(v);
 						break;
 					case 4:
-						vc.consulta(null);
+						System.out.println(vc.consulta());
 						break;
 					case 5:
 						salir = true;
-						break;
+						return;
 					default:
 						System.out.println("Solo numeros entre 1 y 5");
 					}
@@ -95,7 +104,7 @@ public class App {
 					NecesitadoControlador nc = new NecesitadoControlador(BD);
 					switch (opcionCRUD) {
 					case 1:
-						n = app.getNecesitado(opcionBD);
+						n = app.getNecesitado(opcionBD, opcionTabla, false);
 						nc.inserta(n);
 						break;
 					case 2:
@@ -103,16 +112,15 @@ public class App {
 						nc.elimina(id);
 						break;
 					case 3:
-						n = app.getNecesitado(opcionBD);
-						nc.modifica(null, n);
+						n = app.getNecesitado(opcionBD, opcionTabla, true);
+						nc.modifica(n);
 						break;
 					case 4:
-						//pedir datos:
-						nc.consulta(null);
+						System.out.println(nc.consulta());
 						break;
 					case 5:
 						salir = true;
-						break;
+						return;
 					default:
 						System.out.println("Solo numeros entre 1 y 5");
 					}
@@ -121,7 +129,7 @@ public class App {
 					NecesidadControlador nd = new NecesidadControlador(BD);
 					switch (opcionCRUD) {
 					case 1:
-						n2 = app.getNecesidad(opcionBD);
+						n2 = app.getNecesidad(opcionBD, opcionTabla, false);
 						nd.inserta(n2);
 						break;
 					case 2:
@@ -129,87 +137,152 @@ public class App {
 						nd.elimina(id);
 						break;
 					case 3:
-						n2 = app.getNecesidad(opcionBD);
-						nd.modifica(null, n2);
+						n2 = app.getNecesidad(opcionBD, opcionTabla, true);
+						nd.modifica(n2);
 						break;
 					case 4:
-						//pedir datos:
-						nd.consulta(null);
+						System.out.println(nd.consulta());
 						break;
 					case 5:
 						salir = true;
-						break;
+						return;
 					default:
 						System.out.println("Solo numeros entre 1 y 5");
 					}
 					break;
 				case 4:
 					salir = true;
-					break;
+					return;
 				default:
 					System.out.println("Solo numeros entre 1 y 4");
 				}
-				
-				} catch (InputMismatchException e) {
-					System.out.println("Debes insertar un numero");
-					sn.next();
-				}
-		}
-		while (!salir);
+
+			} catch (InputMismatchException e) {
+				System.out.println("Debes insertar un numero");
+				sn.next();
+			}
+		} while (!salir);
 	}
 	
-	//Pide datos y da voluntario:
-	private Voluntario getVoluntario(int opcionBD) {
+	/**
+	 * Pide datos y da voluntario:
+	 * @param opcionBD
+	 * @param opcionTabla
+	 * @param modificar: boolean que dice si la opcion es insertar (false) o modificar (true) 
+	 * @return
+	 */
+	private Voluntario getVoluntario(int opcionBD, int opcionTabla, boolean modificar) {
+		int id = 0;
 		Utilidades.mostrarEnPantalla("Cuestionario voluntario:");
-		int id = getIdBD(opcionBD);
+		if(!modificar) {//insertar
+			id = getIdBD(opcionBD, opcionTabla);			
+		}
+		else { //modificar
+			id = getId();			
+		}
 		String nombre = Utilidades.pedirCadena("Introduce nombre:");
 		String apellido = Utilidades.pedirCadena("Introduce apellido:");
 		int edad = Utilidades.pedirEntero("Introduce edad:");
 		String sexo = Utilidades.pedirCadena("Introduce sexo (Masculino / Femenino):");
-		String estadoCivil = Utilidades.pedirCadena("Introduce estadoCivil (Soltero / Soltera - Casado / Casada - Viudo / Viuda)");
+		String estadoCivil = Utilidades
+				.pedirCadena("Introduce estadoCivil (Soltero / Soltera - Casado / Casada - Viudo / Viuda)");
 		String disponibilidad = Utilidades.pedirCadena("Introduce disponibilidad (Mañana / Tarde / Noche):");
 		return new Voluntario(id, nombre, apellido, edad, sexo, estadoCivil, disponibilidad);
 	}
-	
-	//Pide datos y da Necesitado:
-	private Necesitado getNecesitado(int opcionBD) {
+
+	// Pide datos y da Necesitado:
+	private Necesitado getNecesitado(int opcionBD, int opcionTabla, boolean modificar) {
+		int id = 0;
 		Utilidades.mostrarEnPantalla("Cuestionario necesitado:");
-		int id = getIdBD(opcionBD);
+		if(!modificar) {//insertar
+			id = getIdBD(opcionBD, opcionTabla);			
+		}
+		else { //modificar
+			id = getId();			
+		}
 		String nombre = Utilidades.pedirCadena("Introduce nombre:");
 		String apellido = Utilidades.pedirCadena("Introduce apellido:");
 		int edad = Utilidades.pedirEntero("Introduce edad:");
 		String sexo = Utilidades.pedirCadena("Introduce sexo (Masculino / Femenino):");
-		String estadoCivil = Utilidades.pedirCadena("Introduce estadoCivil (Soltero / Soltera - Casado / Casada - Viudo / Viuda)");
+		String estadoCivil = Utilidades
+				.pedirCadena("Introduce estadoCivil (Soltero / Soltera - Casado / Casada - Viudo / Viuda)");
 		return new Necesitado(id, nombre, apellido, edad, sexo, estadoCivil);
 	}
-	
-	//Pide datos y da Necesidad:
-	private Necesidad getNecesidad(int opcionBD) {
+
+	// Pide datos y da Necesidad:
+	private Necesidad getNecesidad(int opcionBD, int opcionTabla, boolean modificar) {
+		int id = 0;
 		Utilidades.mostrarEnPantalla("Cuestionario necesidad:");
-		int id = getIdBD(opcionBD);
-		Necesitado n = getNecesitado(opcionBD);
-		Voluntario v = getVoluntario(opcionBD);
+		if(!modificar) {//insertar
+			id = getIdBD(opcionBD, opcionTabla);			
+		}
+		else { //modificar
+			id = getId();			
+		}		Necesitado n = getNecesitado(opcionBD, opcionTabla, true);
+		Voluntario v = getVoluntario(opcionBD, opcionTabla, true);
 		String nombre = Utilidades.pedirCadena("Introduce nombre:");
 		String disponibilidad = Utilidades.pedirCadena("Introduce disponibilidad (Mañana / Tarde / Noche):");
 		return new Necesidad(id, n, v, nombre, disponibilidad);
-	}		
-	
-	//Devuelve el siguiente id en el que se puede insertar en la BD:
-	private int getIdBD(int opcionBD) {
+	}
+
+	/**
+	 * Devuelve el siguiente id en el que se puede insertar en la BD:
+	 * 
+	 * @param opcionBD:    mysql, oo, xml
+	 * @param opcionTabla: voluntario, necesitado, necesidad
+	 * @return
+	 */
+	private int getIdBD(int opcionBD, int opcionTabla) {
+		Session sesion = null;
+		ODB bd = null;
+		int contador = 0;
+		if (opcionBD == 1) { // mysql
+			if (opcionTabla == 1) {// vol
+				sesion = VoluntarioImplMySQL.crearConexion();
+				Query<Integer> q = sesion.createQuery("select max(id) from Voluntario");
+				Integer res = q.getSingleResult();
+				return res.intValue() + 1;
+			} else if (opcionTabla == 2) {// necesitado
+				sesion = NecesitadoImplMySQL.crearConexion();
+				Query<Integer> q = sesion.createQuery("select max(id) from Necesitado");
+				Integer res = q.getSingleResult();
+				return res.intValue() + 1;
+			} else if (opcionTabla == 3) {// necesidad
+				sesion = NecesidadImplMySQL.crearConexion();
+				Query<Integer> q = sesion.createQuery("select max(id) from Necesidad");
+				Integer res = q.getSingleResult();
+				return res.intValue() + 1;
+			}
+		} else if (opcionBD == 2) { // oo
+			if (opcionTabla == 1) {// vol
+				bd = VoluntarioImplOO.crearConexion();
+				Objects<Voluntario> voluntarios = bd.getObjects(Voluntario.class);
+				for (Voluntario v : voluntarios) {
+					contador++;
+				}
+				return contador + 1;
+			} else if (opcionTabla == 2) {// necesitado
+				bd = NecesitadoImplOO.crearConexion();
+				Objects<Necesitado> necesitados = bd.getObjects(Necesitado.class);
+				for (Necesitado n : necesitados) {
+					contador++;
+				}
+				return contador + 1;
+			} else if (opcionTabla == 3) {// necesidad
+				bd = NecesidadImplOO.crearConexion();
+				Objects<Necesidad> necesidades = bd.getObjects(Necesidad.class);
+				for (Necesidad n : necesidades) {
+					contador++;
+				}
+				return contador + 1;
+			}
+		}
 		return 0;
 	}
-	
-	//Pide al usuario un id y lo devuelve
+
+	// Pide al usuario un id y lo devuelve
 	private int getId() {
 		int id = Utilidades.pedirEntero("Introduce id:");
 		return id;
 	}
-
-	private int proximo_id(Session sesion) {
-		Query<Integer> q = sesion.createQuery("select max(codigo) from Libro");
-
-		Integer res = q.getSingleResult();
-		return res.intValue() + 1;
-	}
-	
 }

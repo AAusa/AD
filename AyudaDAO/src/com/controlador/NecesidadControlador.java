@@ -11,7 +11,7 @@ public class NecesidadControlador implements NecesidadDAO {
 	
 	public NecesidadControlador (String tipoDeBD) {
 		if (tipoDeBD.equalsIgnoreCase("OO") ) {
-			necesidad = new NecesidadImplOO();
+			necesidad = new NecesidadImplOO(NeodatisUtils.buildODBConection("bd/AyudaOO.db"));
 		} else if (tipoDeBD.equalsIgnoreCase("mysql") ) {
 			necesidad = new NecesidadImplMySQL();
 		} else if (tipoDeBD.equalsIgnoreCase("xml") ) {
@@ -30,13 +30,13 @@ public class NecesidadControlador implements NecesidadDAO {
 		return false;
 	}
 	@Override
-	public boolean modifica(Integer id, Necesidad elemento) {
-		necesidad.modifica(id, elemento);
+	public boolean modifica(Necesidad elemento) {
+		necesidad.modifica(elemento);
 		return false;
 	}
 	@Override
-	public String consulta(Integer id) {
-		return necesidad.consulta(id);
+	public String consulta() {
+		return necesidad.consulta();
 	}
 
 }

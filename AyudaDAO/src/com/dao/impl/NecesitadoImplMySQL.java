@@ -1,5 +1,4 @@
 package com.dao.impl;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -43,21 +42,28 @@ public class NecesitadoImplMySQL implements NecesitadoDAO {
 	}
 
 	@Override
-	public boolean modifica(Integer id, Necesitado elemento) {
+	public boolean modifica(Necesitado elemento) {
 		Transaction tx = sesion.beginTransaction();
-		//Voluntario v = (Voluntario)sesion.get(Voluntario.class, id);
-		sesion.update(elemento);
+		Necesitado n = sesion.get(Necesitado.class, elemento.getId());
+		n.setApellido(elemento.getApellido());
+		n.setEdad(elemento.getEdad());
+		n.setEstadoCivil(elemento.getEstadoCivil());
+		n.setId(elemento.getId());
+		n.setNecesidads(elemento.getNecesidads());
+		n.setNombre(elemento.getNombre());
+		n.setSexo(elemento.getSexo());
+		sesion.update(n);
 		tx.commit();
 		return false;
 	}
 
 	@Override
-	public String consulta(Integer id) {
+	public String consulta() {
 		// TODO Auto-generated method stub
-		return consulta1(id)+consulta2(id);
+		return consulta1()+consulta2();
 	}
 	
-	public String consulta1(Integer id) {
+	public String consulta1() {
 		String resultado = "Nombre, apellido y necesidad de las personas que necesitan comida por la tarde:\n";
 		List<Object> listaNombres = new ArrayList<Object>();
 		String queryTexto = "SELECT necesitado.nombre, necesitado.apellido, necesidad.nombre FROM Necesitado as necesitado INNER JOIN Necesidad as necesidad ON necesitado.id = necesidad.necesitado.id WHERE necesidad.nombre LIKE 'Comida' AND necesidad.disponibilidad LIKE 'Tarde'";
@@ -73,7 +79,7 @@ public class NecesitadoImplMySQL implements NecesitadoDAO {
 		return resultado;
 	}
 	
-	public String consulta2(Integer id) {
+	public String consulta2() {
 		String resultado = "Nombre, apellido y necesidad de los necesitados cuya edad es mayor de 40 años:\n";
 		List<Object> listaNombres = new ArrayList<Object>();
 		String queryTexto = "SELECT necesitado.nombre, necesitado.apellido, necesidad.nombre FROM Necesitado as necesitado INNER JOIN Necesidad as necesidad ON necesitado.id = necesidad.necesitado.id WHERE necesitado.edad > 40";

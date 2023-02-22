@@ -36,36 +36,60 @@ public class VoluntarioImplMySQL implements VoluntarioDAO {
 	
 	@Override
 	public boolean inserta(Voluntario elemento) {
-		Transaction tx = sesion.beginTransaction();		
-		sesion.save(elemento);
-		tx.commit();
-		return false;
+		try {
+			Transaction tx = sesion.beginTransaction();		
+			sesion.save(elemento);
+			tx.commit();
+		} catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
 	}
 
 	@Override
 	public boolean elimina(Integer id) {
-		Transaction tx = sesion.beginTransaction();
-		Voluntario v = (Voluntario)sesion.get(Voluntario.class, id);
-		sesion.delete(v);
-		tx.commit();
-		return false;
+		try {
+			Transaction tx = sesion.beginTransaction();
+			Voluntario v = (Voluntario)sesion.get(Voluntario.class, id);
+			sesion.delete(v);
+			tx.commit();
+		} catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
 	}
 
 	@Override
-	public boolean modifica(Integer id, Voluntario elemento) {
-		Transaction tx = sesion.beginTransaction();
-		//Voluntario v = (Voluntario)sesion.get(Voluntario.class, id);
-		sesion.update(elemento);
-		tx.commit();
-		return false;
+	public boolean modifica(Voluntario elemento) {
+		try {
+			Transaction tx = sesion.beginTransaction();
+			Voluntario v = (Voluntario)sesion.get(Voluntario.class, elemento.getId());
+			v.setApellido(elemento.getApellido());
+			v.setDisponibilidad(elemento.getDisponibilidad());
+			v.setEdad(elemento.getEdad());
+			v.setEstadoCivil(elemento.getEstadoCivil());
+			v.setId(elemento.getId());
+			v.setNecesidads(elemento.getNecesidads());
+			v.setNombre(elemento.getNombre());
+			v.setSexo(elemento.getSexo());
+			sesion.update(v);
+			tx.commit();	
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
 	}
 	
 	@Override
-	public String consulta(Integer id) {
-		return consulta1(id)+consulta2(id);
+	public String consulta() {
+		return consulta1()+consulta2();
 	}
 	
-	public String consulta1(Integer id) {
+	public String consulta1() {
 		String resultado = "Nombre, apellido y necesidad de los voluntarios cuya disponibilidad es la tarde:\n";
 		List<Object> listaNombres = new ArrayList<Object>();
 		String queryTexto = "SELECT v.nombre, v.apellido, n.nombre FROM Voluntario as v INNER JOIN Necesidad as n ON v.id = n.voluntario.id WHERE v.disponibilidad LIKE 'Tarde'";
@@ -81,7 +105,7 @@ public class VoluntarioImplMySQL implements VoluntarioDAO {
 		return resultado;
 	}
 	
-	public String consulta2(Integer id) {
+	public String consulta2() {
 		String resultado = "Nombre, apellido y necesidad de los voluntarios cuya edad es mayor de 40 años:\n";
 		List<Object> listaNombres = new ArrayList<Object>();
 		String queryTexto = "SELECT v.nombre, v.apellido, n.nombre FROM Voluntario as v INNER JOIN Necesidad as n ON v.id = n.voluntario.id WHERE v.edad > 40";

@@ -17,14 +17,14 @@ import com.modelo.Voluntario;
 
 
 public class VoluntarioImplOO implements VoluntarioDAO {
-	private ODB db;
+	private static ODB db;
 
-	
-	public VoluntarioImplOO() {
-		db = ODBFactory.open("bd/AyudaOO.db");
+		
+	public VoluntarioImplOO(ODB bd) {
+		this.db = bd;
 	}
 	
-	public ODB crearConexion() {
+	public static ODB crearConexion() {
 		return db;
 	}
 
@@ -32,7 +32,6 @@ public class VoluntarioImplOO implements VoluntarioDAO {
 	public boolean inserta(Voluntario elemento) {
 		db.store(elemento);
 		db.commit();
-		db.close();
 		System.out.println("Voluntario insertado");
 		return true;
 	}
@@ -56,9 +55,9 @@ public class VoluntarioImplOO implements VoluntarioDAO {
 	}
 
 	@Override
-	public boolean modifica(Integer id, Voluntario elemento) {
+	public boolean modifica(Voluntario elemento) {
 		boolean valor =false;
-		IQuery query = new CriteriaQuery(Voluntario.class, Where.equal("id", id));
+		IQuery query = new CriteriaQuery(Voluntario.class, Where.equal("id", elemento.getId()));
 		Objects<Voluntario> objetos = db.getObjects(query);
 		try {
 			Voluntario voluntario = (Voluntario) objetos.getFirst();
@@ -80,27 +79,28 @@ public class VoluntarioImplOO implements VoluntarioDAO {
 	}
 
 	@Override
-	public String consulta(Integer id) {
+	public String consulta() {
 		// TODO Auto-generated method stub
-		return consulta1(id);
+		return consulta1();
 	}
 	
-	public String consulta1(Integer id) {
-		String resultado = "Nombre y apellido de los voluntarios disponibles para ayudar por la mañana mayores de 18 años ordenados por nombre y apellidos de forma descendente:\n";
+	public String consulta1() {
+		String resultado = "Nombre y apellido de los voluntarios disponibles para ayudar por la mañana mayores de 18 años ordenados por apellidos de forma ascendente:\n";
 		//ODB odb = ODBFactory.open("VoluntarioOO.db");
-		/*
+		
 		ICriterion criterio = new And()
 				.add(Where.equal("disponibilidad", "Mañana"))
 				.add(Where.gt("edad", 18));
-				*/
-		IQuery query = new CriteriaQuery(Voluntario.class,Where.equal("disponibilidad", "Mañana"));
-		//query.orderByAsc("nombre, apellido");
+			
+		IQuery query = new CriteriaQuery(Voluntario.class, criterio);
+		//IQuery query = new CriteriaQuery(Voluntario.class,Where.equal("disponibilidad", "Mañana"));
+		query.orderByAsc("apellido");
 		Objects <Voluntario> voluntarios = this.db.getObjects(query);
 		System.out.println(voluntarios.size() + " voluntarios");
 		Iterator<Voluntario> iter = voluntarios.iterator();
 		while (iter.hasNext()) {
 			Voluntario v = iter.next();
-			resultado += "Nombre: "+v.getNombre()+"\tApellido:"+v.getApellido();
+			resultado += "Nombre: "+v.getNombre()+"\tApellido:"+v.getApellido()+"\n";
 		}
 		return resultado;
 	}
