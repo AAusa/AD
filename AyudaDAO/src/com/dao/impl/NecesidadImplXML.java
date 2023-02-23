@@ -11,7 +11,11 @@ import org.xmldb.api.modules.XPathQueryService;
 
 import com.dao.NecesidadDAO;
 import com.modelo.Necesidad;
-
+/**
+ * Clase que implementa los metodos de NecesidadDAO con la BD XML:
+ * @author Alvaro
+ *
+ */
 public class NecesidadImplXML implements NecesidadDAO {
 	private static XPathQueryService servicio = null;
 

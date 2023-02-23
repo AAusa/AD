@@ -1,15 +1,12 @@
 package ayuda.app;
 
 import java.util.InputMismatchException;
+
 import java.util.Scanner;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.neodatis.odb.ODB;
 import org.neodatis.odb.Objects;
-
-import com.controlador.NecesidadControlador;
-import com.controlador.NecesitadoControlador;
-import com.controlador.VoluntarioControlador;
 import com.dao.impl.NecesidadImplMySQL;
 import com.dao.impl.NecesidadImplOO;
 import com.dao.impl.NecesitadoImplMySQL;
@@ -19,151 +16,12 @@ import com.dao.impl.VoluntarioImplOO;
 import com.modelo.Necesidad;
 import com.modelo.Necesitado;
 import com.modelo.Voluntario;
-
-public class App {
-	public static void main(String[] args) {
-		boolean salir = false;
-		int opcionBD, opcionCRUD, opcionTabla;
-		Scanner sn = new Scanner(System.in);
-		String BD = "";
-		App app = new App();
-		Voluntario v = null;
-		Necesitado n = null;
-		Necesidad n2 = null;
-		int id = 0;
-		do {
-			try {
-				System.out.println("Indica la BD con la que deseas trabajar:");
-				System.out.println("\t1) MySQL (Hibernate)");
-				System.out.println("\t2) OO (Neodatis)");
-				System.out.println("\t3) XML (ExistDB)");
-				System.out.println("\t4) Salir");
-				opcionBD = Utilidades.pedirEntero("Escribe una de las opciones:");
-				switch (opcionBD) {
-				case 1:
-					BD = "mysql";
-					break;
-				case 2:
-					BD = "oo";
-					break;
-				case 3:
-					BD = "xml";
-					break;
-				case 4:
-					salir = true;
-					return;
-				default:
-					System.out.println("Solo numeros entre 1 y 4");
-				}
-				System.out.println("Indica la accion que deseas realizar:");
-				System.out.println("\t1) Insertar");
-				System.out.println("\t2) Eliminar");
-				System.out.println("\t3) Modificar");
-				System.out.println("\t4) Consultar");
-				System.out.println("\t5) Salir");
-
-				opcionCRUD = Utilidades.pedirEntero("Escribe una de las opciones:");
-				if (opcionCRUD == 5) {
-					salir = true;
-					return;
-				}
-
-				System.out.println("Indica la tabla con la que deseas trabajar:");
-				System.out.println("\t1) Voluntario");
-				System.out.println("\t2) Necesitado");
-				System.out.println("\t3) Necesidad");
-				System.out.println("\t4) Salir");
-				opcionTabla = Utilidades.pedirEntero("Escribe una de las opciones:");
-				switch (opcionTabla) {
-				case 1:
-					VoluntarioControlador vc = new VoluntarioControlador(BD);
-					switch (opcionCRUD) {
-					case 1:
-						v = app.getVoluntario(opcionBD, opcionTabla, false);
-						vc.inserta(v);
-						break;
-					case 2:
-						id = app.getId();
-						vc.elimina(id);
-						break;
-					case 3:
-						v = app.getVoluntario(opcionBD, opcionTabla, true);
-						vc.modifica(v);
-						break;
-					case 4:
-						System.out.println(vc.consulta());
-						break;
-					case 5:
-						salir = true;
-						return;
-					default:
-						System.out.println("Solo numeros entre 1 y 5");
-					}
-					break;
-				case 2:
-					NecesitadoControlador nc = new NecesitadoControlador(BD);
-					switch (opcionCRUD) {
-					case 1:
-						n = app.getNecesitado(opcionBD, opcionTabla, false);
-						nc.inserta(n);
-						break;
-					case 2:
-						id = app.getId();
-						nc.elimina(id);
-						break;
-					case 3:
-						n = app.getNecesitado(opcionBD, opcionTabla, true);
-						nc.modifica(n);
-						break;
-					case 4:
-						System.out.println(nc.consulta());
-						break;
-					case 5:
-						salir = true;
-						return;
-					default:
-						System.out.println("Solo numeros entre 1 y 5");
-					}
-					break;
-				case 3:
-					NecesidadControlador nd = new NecesidadControlador(BD);
-					switch (opcionCRUD) {
-					case 1:
-						n2 = app.getNecesidad(opcionBD, opcionTabla, false);
-						nd.inserta(n2);
-						break;
-					case 2:
-						id = app.getId();
-						nd.elimina(id);
-						break;
-					case 3:
-						n2 = app.getNecesidad(opcionBD, opcionTabla, true);
-						nd.modifica(n2);
-						break;
-					case 4:
-						System.out.println(nd.consulta());
-						break;
-					case 5:
-						salir = true;
-						return;
-					default:
-						System.out.println("Solo numeros entre 1 y 5");
-					}
-					break;
-				case 4:
-					salir = true;
-					return;
-				default:
-					System.out.println("Solo numeros entre 1 y 4");
-				}
-
-			} catch (InputMismatchException e) {
-				System.out.println("Debes insertar un numero");
-				sn.next();
-			}
-		} while (!salir);
-	}
-	
+/**
+ * Clase encargada de crear los objetos e IDs con los que trabajar con la BD
+ * @author Alvaro
+ *
+ */
+public class Gestion {
 	/**
 	 * Pide datos y da voluntario:
 	 * @param opcionBD
@@ -171,7 +29,7 @@ public class App {
 	 * @param modificar: boolean que dice si la opcion es insertar (false) o modificar (true) 
 	 * @return
 	 */
-	private Voluntario getVoluntario(int opcionBD, int opcionTabla, boolean modificar) {
+	public Voluntario getVoluntario(int opcionBD, int opcionTabla, boolean modificar) {
 		int id = 0;
 		Utilidades.mostrarEnPantalla("Cuestionario voluntario:");
 		if(!modificar) {//insertar
@@ -190,8 +48,14 @@ public class App {
 		return new Voluntario(id, nombre, apellido, edad, sexo, estadoCivil, disponibilidad);
 	}
 
-	// Pide datos y da Necesitado:
-	private Necesitado getNecesitado(int opcionBD, int opcionTabla, boolean modificar) {
+	/**
+	 * Pide datos y da necesitado:
+	 * @param opcionBD
+	 * @param opcionTabla
+	 * @param modificar: boolean que dice si la opcion es insertar (false) o modificar (true) 
+	 * @return
+	 */
+	public Necesitado getNecesitado(int opcionBD, int opcionTabla, boolean modificar) {
 		int id = 0;
 		Utilidades.mostrarEnPantalla("Cuestionario necesitado:");
 		if(!modificar) {//insertar
@@ -209,8 +73,14 @@ public class App {
 		return new Necesitado(id, nombre, apellido, edad, sexo, estadoCivil);
 	}
 
-	// Pide datos y da Necesidad:
-	private Necesidad getNecesidad(int opcionBD, int opcionTabla, boolean modificar) {
+	/**
+	 * Pide datos y da necesidad:
+	 * @param opcionBD
+	 * @param opcionTabla
+	 * @param modificar: boolean que dice si la opcion es insertar (false) o modificar (true) 
+	 * @return
+	 */
+	public Necesidad getNecesidad(int opcionBD, int opcionTabla, boolean modificar) {
 		int id = 0;
 		Utilidades.mostrarEnPantalla("Cuestionario necesidad:");
 		if(!modificar) {//insertar
@@ -227,7 +97,6 @@ public class App {
 
 	/**
 	 * Devuelve el siguiente id en el que se puede insertar en la BD:
-	 * 
 	 * @param opcionBD:    mysql, oo, xml
 	 * @param opcionTabla: voluntario, necesitado, necesidad
 	 * @return
@@ -280,8 +149,11 @@ public class App {
 		return 0;
 	}
 
-	// Pide al usuario un id y lo devuelve
-	private int getId() {
+	/**
+	 * Pide id al usuario:
+	 * @return
+	 */
+	public int getId() {
 		int id = Utilidades.pedirEntero("Introduce id:");
 		return id;
 	}

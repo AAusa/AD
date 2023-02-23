@@ -5,7 +5,11 @@ import com.dao.impl.NecesitadoImplMySQL;
 import com.dao.impl.NecesitadoImplOO;
 import com.dao.impl.NecesitadoImplXML;
 import com.modelo.Necesitado;
-
+/**
+ * Controlador de la clase Necesitado:
+ * @author Alvaro
+ *
+ */
 public class NecesitadoControlador implements NecesitadoDAO {
 	private NecesitadoDAO necesitado;
 	
@@ -20,20 +24,17 @@ public class NecesitadoControlador implements NecesitadoDAO {
 	}
 	@Override
 	public boolean inserta(Necesitado elemento) {
-		necesitado.inserta(elemento);
-		return false;
+		return necesitado.inserta(elemento);
 	}
 
 	@Override
 	public boolean elimina(Integer id) {
-		necesitado.elimina(id);
-		return false;
+		return necesitado.elimina(id);
 	}
 
 	@Override
 	public boolean modifica(Necesitado elemento) {
-		necesitado.modifica(elemento);
-		return false;
+		return necesitado.modifica(elemento);
 	}
 
 	@Override

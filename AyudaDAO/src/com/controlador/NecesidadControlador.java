@@ -5,7 +5,11 @@ import com.dao.impl.NecesidadImplMySQL;
 import com.dao.impl.NecesidadImplOO;
 import com.dao.impl.NecesidadImplXML;
 import com.modelo.Necesidad;
-
+/**
+ * Controlador de la clase Necesidad:
+ * @author Alvaro
+ *
+ */
 public class NecesidadControlador implements NecesidadDAO {
 	private NecesidadDAO necesidad;
 	
@@ -20,19 +24,19 @@ public class NecesidadControlador implements NecesidadDAO {
 	}
 	@Override
 	public boolean inserta(Necesidad elemento) {
-		necesidad.inserta(elemento);
-		return false;
+		
+		return necesidad.inserta(elemento);
 	}
 	
 	@Override
 	public boolean elimina(Integer id) {
-		necesidad.elimina(id);
-		return false;
+		
+		return necesidad.elimina(id);
 	}
 	@Override
 	public boolean modifica(Necesidad elemento) {
-		necesidad.modifica(elemento);
-		return false;
+		
+		return necesidad.modifica(elemento);
 	}
 	@Override
 	public String consulta() {

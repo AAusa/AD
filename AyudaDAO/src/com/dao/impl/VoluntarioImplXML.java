@@ -12,7 +12,11 @@ import org.xmldb.api.base.XMLDBException;
 import org.xmldb.api.modules.XPathQueryService;
 import com.dao.VoluntarioDAO;
 import com.modelo.Voluntario;
-
+/**
+ * Clase que implementa los metodos de VoluntarioDAO con la BD XML:
+ * @author Alvaro
+ *
+ */
 public class VoluntarioImplXML implements VoluntarioDAO {
 private static XPathQueryService servicio = null;
 

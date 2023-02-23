@@ -2,6 +2,7 @@ package ayuda.app;
 
 import java.util.Iterator;
 
+
 import java.util.List;
 
 import org.hibernate.Session;
@@ -20,8 +21,12 @@ import com.modelo.Necesidad;
 import com.modelo.Necesitado;
 import com.modelo.Voluntario;
 
-
-public class rellenarBDOO {
+/**
+ * Clase que permite la insercion de datos en la BDOO
+ * @author Alvaro
+ *
+ */
+public class RellenarBDOO {
 
 	public static void main(String[] args) {
 		Voluntario vol1 = new Voluntario(1, "Juan", "Garcia", 31, "Masculino", "Soltero", "Mañana");

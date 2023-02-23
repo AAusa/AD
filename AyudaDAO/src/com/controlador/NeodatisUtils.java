@@ -1,7 +1,11 @@
 package com.controlador;
 import org.neodatis.odb.ODB;
 import org.neodatis.odb.ODBFactory;
-
+/**
+ * Gestiona la apertura de la BDOO
+ * @author Eva
+ *
+ */
 public class NeodatisUtils {
 
 	private static ODB db = null;
@@ -10,7 +14,6 @@ public class NeodatisUtils {
 		
 		try {
 			if (db == null || db.isClosed()) {
-				System.out.println("Es null o está cerrada");
 				db = ODBFactory.open(basedatos); 
 			}
 			return db;

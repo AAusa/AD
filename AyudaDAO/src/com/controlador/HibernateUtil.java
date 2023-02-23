@@ -16,21 +16,14 @@ import org.hibernate.cfg.Configuration;
  *
  */
 public class HibernateUtil { 
-
-	// DEFINIMOS UNA VARIABLE QUE ES FINAL
+	
 	private static final SessionFactory sessionFactory = buildSessionFactory();
-
-	// DEFINIMOS UN M�TODO EST�TICO para construir la sesi�n
+	
 	private static SessionFactory buildSessionFactory() {
 		try {
-			//creamos la f�brica de sesiones utilizando hibernate.cfg.xml
 			Configuration configuration = new Configuration().configure();
 			StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().configure() ;          	
 			return configuration.buildSessionFactory(builder.build());
-			
-			//lo anterior tambien lo podemos poner asi    	       	
-			//return new Configuration().configure().buildSessionFactory(
-			//			new StandardServiceRegistryBuilder().configure().build() );		
 		}
 		catch (Throwable ex) {
 			// Nos aseguramos de que vamos a registrar la excepci�n

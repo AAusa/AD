@@ -7,18 +7,11 @@ import java.io.InputStreamReader;
 import java.util.regex.PatternSyntaxException;
 
 /**
- * 
- */
-
-/**
- * @author yo
+ * Clase proporcionada encargada de validar las interacciones con el usuario:
+ * @author Eva
  *
  */
 public class Utilidades {
-	
-	/**
-	 * M�todo para imprimir mensaje que se repet�a
-	 */
 	static public void mostrarEnPantalla(String mensage){
 		System.out.println(mensage);
 	}

@@ -15,28 +15,38 @@ import org.neodatis.odb.impl.core.query.criteria.CriteriaQuery;
 import com.dao.NecesidadDAO;
 import com.modelo.Necesidad;
 import com.modelo.Voluntario;
-
+/**
+ * Clase que implementa los metodos de NecesidadDAO con la BD OO:
+ * @author Alvaro
+ *
+ */
 public class NecesidadImplOO implements NecesidadDAO {
 	private static ODB db;
 
 	public NecesidadImplOO(ODB bd) {
 		this.db = bd;
 	}
-	
+
 	public static ODB crearConexion() {
 		return db;
 	}
+
 	@Override
 	public boolean inserta(Necesidad elemento) {
-		db.store(elemento);
-		db.commit();
-		System.out.println("Necesidad insertado");
+		try {
+			db.store(elemento);
+			db.commit();
+			System.out.println("Necesidad insertado");
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 		return true;
 	}
 
 	@Override
 	public boolean elimina(Integer id) {
-		boolean valor =false;
+		boolean valor = false;
 		IQuery query = new CriteriaQuery(Necesidad.class, Where.equal("id", id));
 		Objects<Necesidad> objetos = db.getObjects(query);
 		try {
@@ -48,13 +58,13 @@ public class NecesidadImplOO implements NecesidadDAO {
 		} catch (IndexOutOfBoundsException i) {
 			i.printStackTrace();
 		}
-		
+
 		return valor;
 	}
 
 	@Override
 	public boolean modifica(Necesidad elemento) {
-		boolean valor =false;
+		boolean valor = false;
 		IQuery query = new CriteriaQuery(Necesidad.class, Where.equal("id", elemento.getId()));
 		Objects<Necesidad> objetos = db.getObjects(query);
 		try {
@@ -76,9 +86,7 @@ public class NecesidadImplOO implements NecesidadDAO {
 
 	@Override
 	public String consulta() {
-		// TODO Auto-generated method stub
 		return "En esta BD hay consultas en las tablas: Voluntario y Necesitado";
 	}
-	
 
 }
